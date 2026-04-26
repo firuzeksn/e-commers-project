@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './layout/Header';
-
+import { Icon } from '@iconify/react';
 function App() {
 
   const modelImages = [
@@ -26,7 +26,7 @@ function App() {
   }));
 
   return (
-    <div className="w-full min-h-screen bg-white font-['Montserrat']">
+    <div className="w-full min-h-screen bg-white font-montserrat">
       
       {/* 1. HEADER */}
       <Header />
@@ -63,16 +63,39 @@ function App() {
       </div>
 
       {/* 3. PARTNERS */}
-      <div className="py-12 px-10 bg-white">
-        <div className="container mx-auto flex flex-wrap justify-center md:justify-between items-center gap-12">
-          <img src="https://img.icons8.com/color/96/google-logo.png" className="h-10 w-auto grayscale opacity-60 hover:opacity-100 transition-all" alt="Google" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Lyft_logo.svg" className="h-8 w-auto grayscale opacity-60 hover:opacity-100 transition-all" alt="Lyft" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" className="h-8 w-auto grayscale opacity-60 hover:opacity-100 transition-all" alt="Stripe" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_logo.svg" className="h-8 w-auto grayscale opacity-60 hover:opacity-100 transition-all" alt="AWS" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Reddit_logo.svg" className="h-10 w-auto grayscale opacity-60 hover:opacity-100 transition-all" alt="Reddit" />
-          <img src="https://img.icons8.com/ios-filled/100/737373/facebook-new.png" className="h-10 w-auto grayscale opacity-60 hover:opacity-100 transition-all" alt="Facebook" />
-        </div>
-      </div>
+<div className="py-16 px-10 bg-[#FAFAFA]">
+  <div className="container mx-auto flex flex-wrap justify-center md:justify-between items-center gap-12 lg:gap-8">
+    {/* Hooli Logo */}
+    <div className="flex items-center grayscale opacity-60 hover:opacity-100 transition-all duration-300">
+        <Icon icon="fa6-brands:hooli" className="text-[6.5rem] text-[#737373]" />
+    </div>
+
+    {/* Lyft Logo */}
+    <div className="flex items-center grayscale opacity-60 hover:opacity-100 transition-all duration-300">
+        <Icon icon="fa6-brands:lyft" className="text-[5rem] text-[#737373]" />
+    </div>
+
+    {/* Pied Piper Hat - KESİN ÇALIŞAN ALTERNATİF */}
+    <div className="flex items-center grayscale opacity-60 hover:opacity-100 transition-all duration-300">
+        <Icon icon="ph:leaf-fill" className="text-7xl text-[#737373]" />
+    </div>
+
+    {/* Stripe Logo */}
+    <div className="flex items-center grayscale opacity-60 hover:opacity-100 transition-all duration-300">
+        <Icon icon="fa6-brands:stripe" className="text-[6.5rem] text-[#737373]" />
+    </div>
+
+    {/* AWS Logo */}
+    <div className="flex items-center grayscale opacity-60 hover:opacity-100 transition-all duration-300">
+        <Icon icon="fa6-brands:aws" className="text-[6rem] text-[#737373]" />
+    </div>
+
+    {/* Reddit Logo */}
+    <div className="flex items-center grayscale opacity-60 hover:opacity-100 transition-all duration-300">
+        <Icon icon="fa6-brands:reddit-alien" className="text-[5.5rem] text-[#737373]" />
+    </div>
+  </div>
+</div>
 
       {/* 4. TOP PRODUCTS SECTION */}
       <section className="py-12 px-4 md:px-24 bg-[#FAFAFA]">
@@ -203,10 +226,11 @@ function App() {
             {/* 1. Hizmet: Easy Wins */}
             <div className="flex flex-col items-center text-center gap-4 group">
               <div className="w-20 h-20 mb-2 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                {/* Kitap/Okuma İkonu */}
-                <svg className="w-full h-full text-[#23A6F0]" fill="currentColor" viewBox="0 0 24 24">
-                   <path d="M12 11.675l-6.235-4.235 6.235-4.235 6.235 4.235-6.235 4.235zm0 2.325l-6.235-4.235-1.765 1.2 8 5.435 8-5.435-1.765-1.2-6.235 4.235zm0 4.65l-6.235-4.235-1.765 1.2 8 5.435 8-5.435-1.765-1.2-6.235 4.235z"/>
-                </svg>
+                {/* DÜZENLENEN KISIM: Flowbite Book Open Reader Solid İkonu */}
+                <Icon 
+                    icon="flowbite:book-open-reader-solid" 
+                    className="w-full h-full text-[#23A6F0]" 
+                />
               </div>
               <h3 className="text-[#252B42] text-2xl font-bold">Easy Wins</h3>
               <p className="text-[#737373] text-sm max-w-[230px] leading-relaxed">
@@ -214,133 +238,158 @@ function App() {
               </p>
             </div>
 
-            {/* 2. Hizmet: Concrete */}
-            <div className="flex flex-col items-center text-center gap-4 group">
-              <div className="w-20 h-20 mb-2 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                {/* Kitap/Defter İkonu */}
-                <svg className="w-full h-full text-[#23A6F0]" fill="currentColor" viewBox="0 0 24 24">
-                   <path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM11 17H4V6h7v11zm9 0h-7V6h7v11z"/>
-                </svg>
-              </div>
-              <h3 className="text-[#252B42] text-2xl font-bold">Concrete</h3>
-              <p className="text-[#737373] text-sm max-w-[230px] leading-relaxed">
-                Defalcate is most focused in helping you discover your most beautiful smile
-              </p>
-            </div>
-
-            {/* 3. Hizmet: Hack Growth */}
-            <div className="flex flex-col items-center text-center gap-4 group">
-              <div className="w-20 h-20 mb-2 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                {/* Yükseliş/Grafik İkonu */}
-                <svg className="w-full h-full text-[#23A6F0]" fill="currentColor" viewBox="0 0 24 24">
-                   <path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.09-4-4L2 17.08l1.5 1.41z"/>
-                </svg>
-              </div>
-              <h3 className="text-[#252B42] text-2xl font-bold">Hack Growth</h3>
-              <p className="text-[#737373] text-sm max-w-[230px] leading-relaxed">
-                Overcame any hurdle or any other problem.
-              </p>
-            </div>
-
-          </div>
+      {/* 2. Hizmet: Concrete */}
+      <div className="flex flex-col items-center text-center gap-4 group">
+        <div className="w-20 h-20 mb-2 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+          {/* İSTEDİĞİN YENİ İKON: Carbon Book */}
+          <Icon icon="carbon:book" className="w-full h-full text-[#23A6F0]" />
         </div>
-      </section>
+        <h3 className="text-[#252B42] text-2xl font-bold">Concrete</h3>
+        <p className="text-[#737373] text-sm max-w-[230px] leading-relaxed">
+          Defalcate is most focused in helping you discover your most beautiful smile
+        </p>
+      </div>
+
+      {/* 3. Hizmet: Hack Growth */}
+      <div className="flex flex-col items-center text-center gap-4 group">
+        <div className="w-20 h-20 mb-2 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 text-[#23A6F0]">
+          {/* Yükseliş/Grafik İkonu - Iconify */}
+          <Icon icon="ant-design:line-chart-outlined" className="text-7xl" />
+        </div>
+        <h3 className="text-[#252B42] text-2xl font-bold">Hack Growth</h3>
+        <p className="text-[#737373] text-sm max-w-[230px] leading-relaxed">
+          Overcame any hurdle or any other problem.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* 8. FEATURED POSTS SECTION */}
-      <section className="py-20 px-4 md:px-24 bg-white">
-        <div className="container mx-auto">
-          {/* Başlık Grubu */}
-          <div className="flex flex-col items-center text-center gap-2 mb-20">
-            <h4 className="text-[#23A6F0] font-bold text-sm tracking-wide">Practice Advice</h4>
-            <h2 className="text-[#252B42] text-[40px] font-bold">Featured Posts</h2>
-          </div>
+<section className="py-20 px-4 md:px-24 bg-white">
+  <div className="container mx-auto">
+    {/* Başlık Grubu */}
+    <div className="flex flex-col items-center text-center gap-2 mb-20">
+      <h4 className="text-[#23A6F0] font-bold text-sm tracking-wide">Practice Advice</h4>
+      <h2 className="text-[#252B42] text-[40px] font-bold">Featured Posts</h2>
+    </div>
 
-          {/* Post Kartları Grid Yapısı */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    {/* Post Kartları Grid Yapısı */}
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {[1, 2].map((item) => (
+        <div key={item} className="flex flex-col md:flex-row shadow-sm border border-[#E8E8E8] rounded-lg overflow-hidden transition-all hover:shadow-xl">
+          
+          {/* Sol Taraf: Görsel ve Overlay İkonlar */}
+          <div className="relative w-full md:w-[40%] h-[300px] md:h-auto">
+            <img 
+              src={item === 1 ? "src/assets/havai.jpg" : "src/assets/images.jpg"} 
+              alt="Post" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute top-4 left-4 bg-[#E74C3C] text-white px-3 py-1 rounded-sm font-bold text-sm shadow-md">
+              Sale
+            </div>
             
-            {[1, 2].map((item) => (
-              <div key={item} className="flex flex-col md:flex-row shadow-sm border border-[#E8E8E8] rounded-lg overflow-hidden transition-all hover:shadow-xl">
-                
-                {/* Sol Taraf: Görsel ve Overlay İkonlar */}
-                <div className="relative w-full md:w-[40%] h-[300px] md:h-auto">
-                  <img 
-                    src={item === 1 ? "src/assets/havai.jpg" : "src/assets/images.jpg"} 
-                    alt="Post" 
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-4 left-4 bg-[#E74C3C] text-white px-3 py-1 rounded-sm font-bold text-sm shadow-md">
-                    Sale
-                  </div>
-                  {/* Alt Orta İkonlar */}
-                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
-                    <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-[#23A6F0] hover:text-white transition-colors">
-                      <i className="fa-regular fa-heart"></i>
-                    </button>
-                    <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-[#23A6F0] hover:text-white transition-colors">
-                      <i className="fa-solid fa-cart-shopping"></i>
-                    </button>
-                    <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-[#23A6F0] hover:text-white transition-colors">
-                      <i className="fa-regular fa-eye"></i>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Sağ Taraf: İçerik Bilgileri */}
-                <div className="w-full md:w-[60%] p-8 flex flex-col gap-4 bg-white">
-                  <div className="flex justify-between items-center">
-                    <span className="text-[#23A6F0] font-bold text-sm">English Department</span>
-                    <div className="flex items-center gap-1 bg-[#252B42] text-white px-2 py-1 rounded-2xl text-xs">
-                      <i className="fa-solid fa-star text-yellow-400"></i>
-                      <span>4.9</span>
-                    </div>
-                  </div>
-                  
-                  <h5 className="text-[#252B42] font-bold text-base">Graphic Design</h5>
-                  <p className="text-[#737373] text-sm leading-relaxed">
-                    We focus on ergonomics and meeting you where you work. It's only a keystroke away.
-                  </p>
-                  
-                  <div className="flex items-center gap-2 text-[#737373] font-bold text-sm">
-                    <i className="fa-solid fa-download"></i>
-                    <span>15 Sales</span>
-                  </div>
-
-                  <div className="flex gap-2 font-bold text-base">
-                    <span className="text-[#BDBDBD]">$16.48</span>
-                    <span className="text-[#23856D]">$6.48</span>
-                  </div>
-
-                  {/* Renk Noktaları */}
-                  <div className="flex gap-2 my-2">
-                    <div className="w-4 h-4 bg-[#23A6F0] rounded-full"></div>
-                    <div className="w-4 h-4 bg-[#23856D] rounded-full"></div>
-                    <div className="w-4 h-4 bg-[#E77C40] rounded-full"></div>
-                    <div className="w-4 h-4 bg-[#252B42] rounded-full"></div>
-                  </div>
-
-                  <button className="flex items-center gap-2 text-[#23A6F0] font-bold text-sm border border-[#23A6F0] rounded-full px-5 py-2 w-fit hover:bg-[#23A6F0] hover:text-white transition-all group">
-                    Learn More 
-                    <i className="fa-solid fa-chevron-right group-hover:translate-x-1 transition-transform"></i>
-                  </button>
-                </div>
-
-              </div>
-            ))}
-
+            {/* Alt Orta İkonlar */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
+              <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-[#23A6F0] hover:text-white transition-colors">
+                <Icon icon="ant-design:heart-outlined" className="text-xl" />
+              </button>
+              <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-[#23A6F0] hover:text-white transition-colors">
+                <Icon icon="ant-design:shopping-cart-outlined" className="text-xl" />
+              </button>
+              <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-[#23A6F0] hover:text-white transition-colors">
+                <Icon icon="ant-design:eye-outlined" className="text-xl" />
+              </button>
+            </div>
           </div>
+
+          {/* Sağ Taraf: İçerik Bilgileri */}
+          <div className="w-full md:w-[60%] p-8 flex flex-col gap-4 bg-white">
+            <div className="flex justify-between items-center">
+              <span className="text-[#23A6F0] font-bold text-sm">English Department</span>
+              <div className="flex items-center gap-1 bg-[#252B42] text-white px-3 py-1 rounded-2xl text-xs font-bold">
+                <Icon icon="ant-design:star-filled" className="text-yellow-400 text-sm" />
+                <span>4.9</span>
+              </div>
+            </div>
+            
+            <h5 className="text-[#252B42] font-bold text-base">Graphic Design</h5>
+            <p className="text-[#737373] text-sm leading-relaxed">
+              We focus on ergonomics and meeting you where you work. It's only a keystroke away.
+            </p>
+            
+            {/* Satış Bilgisi - İkon Güncellendi */}
+            <div className="flex items-center gap-2 text-[#737373] font-bold text-sm">
+              <Icon icon="ant-design:download-outlined" className="text-lg" />
+              <span>15 Sales</span>
+            </div>
+
+            <div className="flex gap-2 font-bold text-base">
+              <span className="text-[#BDBDBD]">$16.48</span>
+              <span className="text-[#23856D]">$6.48</span>
+            </div>
+
+            {/* Renk Noktaları */}
+            <div className="flex gap-2 my-2">
+              <div className="w-4 h-4 bg-[#23A6F0] rounded-full cursor-pointer"></div>
+              <div className="w-4 h-4 bg-[#23856D] rounded-full cursor-pointer"></div>
+              <div className="w-4 h-4 bg-[#E77C40] rounded-full cursor-pointer"></div>
+              <div className="w-4 h-4 bg-[#252B42] rounded-full cursor-pointer"></div>
+            </div>
+
+            {/* Alt Bilgi İkonları - Saat, Ders ve Grafik */}
+            <div className="flex items-center gap-4 text-[#737373] text-xs font-semibold mt-auto pt-4">
+              <div className="flex items-center gap-1">
+                <Icon icon="ant-design:clock-circle-outlined" className="text-[#23A6F0] text-sm" />
+                <span>22h...</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Icon icon="ant-design:ordered-list-outlined" className="text-[#E77C40] text-sm" />
+                <span>64 Lessons</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Icon icon="ant-design:area-chart-outlined" className="text-[#23856D] text-sm" />
+                <span>Progress</span>
+              </div>
+            </div>
+
+            {/* Learn More Butonu - İkon Güncellendi */}
+            <button className="flex items-center gap-2 text-[#23A6F0] font-bold text-sm border border-[#23A6F0] rounded-full px-5 py-2 w-fit mt-4 hover:bg-[#23A6F0] hover:text-white transition-all group">
+              Learn More 
+              <Icon icon="ant-design:right-outlined" className="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* 9. FOOTER SECTION */}
       <footer className="bg-white">
-        {/* Üst Kısım: Logo ve Sosyal Medya */}
+        {/* Üst Kısım: Logo ve Sosyal Medya (GÜNCELLENDİ) */}
         <div className="bg-[#FAFAFA] py-10 px-4 md:px-24">
           <div className="container mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <h3 className="text-[#252B42] text-2xl font-bold">Bandage</h3>
-            <div className="flex gap-5 text-[#23A6F0] text-2xl">
-              <i className="fa-brands fa-facebook cursor-pointer hover:text-[#1a88c7]"></i>
-              <i className="fa-brands fa-instagram cursor-pointer hover:text-[#1a88c7]"></i>
-              <i className="fa-brands fa-twitter cursor-pointer hover:text-[#1a88c7]"></i>
+            <div className="flex gap-5 text-[#23A6F0]">
+              {/* Facebook İkonu */}
+              <Icon 
+                icon="ant-design:facebook-filled" 
+                className="text-2xl cursor-pointer hover:text-[#1a88c7] transition-colors" 
+              />
+              {/* Instagram İkonu */}
+              <Icon 
+                icon="ant-design:instagram-outlined" 
+                className="text-2xl cursor-pointer hover:text-[#1a88c7] transition-colors" 
+              />
+              {/* Twitter/X İkonu */}
+              <Icon 
+                icon="ant-design:twitter-outlined" 
+                className="text-2xl cursor-pointer hover:text-[#1a88c7] transition-colors" 
+              />
             </div>
           </div>
         </div>

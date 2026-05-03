@@ -1,6 +1,7 @@
 const initialState = {
   categories: [],
   productList: [],
+  products: [],
   total: 0,
   limit: 25,
   offset: 0,
@@ -12,6 +13,7 @@ export const productReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_CATEGORIES': return { ...state, categories: action.payload };
     case 'SET_PRODUCT_LIST': return { ...state, productList: action.payload };
+    case 'SET_PRODUCTS': return { ...state, products: action.payload };
     case 'SET_TOTAL': return { ...state, total: action.payload };
     case 'SET_FETCH_STATE': return { ...state, fetchState: action.payload };
     case 'SET_LIMIT': return { ...state, limit: action.payload };

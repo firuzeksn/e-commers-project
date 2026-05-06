@@ -47,3 +47,21 @@ export const fetchProducts = (category, filter, sort, limit = 25, offset = 0) =>
     });
 };
 
+export const setProductDetail = (product) => ({ type: "SET_PRODUCT_DETAIL", payload: product });
+
+export const fetchProductDetail = (productId) => (dispatch) => {
+  dispatch({ type: "SET_FETCH_STATE", payload: "FETCHING" }); // Yükleniyor durumunu başlat
+  
+  API
+    .get(`/products/${productId}`)
+    .then((res) => {
+      // BURASI KRİTİK: Reducer'daki productDetail'i güncelleyen yer burası
+      dispatch({ type: "SET_PRODUCT_DETAIL", payload: res.data }); 
+      dispatch({ type: "SET_FETCH_STATE", payload: "FETCHED" });
+    })
+    .catch((err) => {
+      console.error("Ürün detayı çekilemedi:", err);
+      dispatch({ type: "SET_FETCH_STATE", payload: "ERROR" });
+    });
+};
+

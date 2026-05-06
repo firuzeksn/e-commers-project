@@ -10,13 +10,15 @@ const Header = () => {
   const navigate = useNavigate();
   
   const user = useSelector((state) => state.client.user);
-  // Redux'tan kategorileri alıyoruz
   const categories = useSelector((state) => state.product.categories);
+  const favorites = useSelector((state) => state.shoppingCart?.favorites || []);
+  const cart = useSelector((state) => state.shoppingCart?.cart || []);
+
+  const totalItems = cart?.reduce((total, item) => total + item.count, 0) || 0;
 
   const isShopOrDetail = location.pathname.startsWith('/shop');
   const topBarColor = isShopOrDetail ? 'bg-[#23856D]' : 'bg-[#252B42]';
 
-  // Kategorileri cinsiyete göre gruplandıralım
   const womenCategories = categories.filter(cat => cat.gender === 'k');
   const menCategories = categories.filter(cat => cat.gender === 'e');
 
@@ -62,15 +64,12 @@ const Header = () => {
         <ul className="hidden md:flex gap-5 text-[#737373] font-bold text-sm items-center">
           <li><Link to="/" className="hover:text-[#252B42]">Home</Link></li>
           
-          {/* SHOP DROP-DOWN MENÜ */}
           <li className="relative flex items-center gap-1 cursor-pointer group py-2">
             <Link to="/shop" className="hover:text-[#252B42] flex items-center gap-1">
               Shop <Icon icon="iconamoon:arrow-down-2-light" className="text-xl" />
             </Link>
             
-            {/* Dropdown İçeriği (Hover ile açılır) */}
-            <div className="absolute hidden group-hover:flex top-full left-0 bg-white shadow-xl border border-gray-100 rounded-md p-6 min-w-[400px] gap-12 animate-fadeIn">
-              {/* Kadın Sütunu */}
+            <div className="absolute hidden group-hover:flex top-full left-0 bg-white shadow-xl border border-gray-100 rounded-md p-6 min-w-[400px] gap-12 animate-fadeIn z-50">
               <div className="flex flex-col gap-3">
                 <h3 className="text-[#252B42] text-base mb-2">Kadın</h3>
                 {womenCategories.map((cat) => (
@@ -84,7 +83,6 @@ const Header = () => {
                 ))}
               </div>
               
-              {/* Erkek Sütunu */}
               <div className="flex flex-col gap-3">
                 <h3 className="text-[#252B42] text-base mb-2">Erkek</h3>
                 {menCategories.map((cat) => (
@@ -104,10 +102,8 @@ const Header = () => {
           <li><Link to="/blog" className="hover:text-[#252B42]">Blog</Link></li>
           <li><Link to="/contact" className="hover:text-[#252B42]">Contact</Link></li>
           <li><Link to="/team" className="hover:text-[#252B42]">Team</Link></li>
-          <li><Link to="/pages" className="hover:text-[#252B42]">Pages</Link></li>
         </ul>
 
-        {/* SAĞ TARAF - KULLANICI DURUMU */}
         <div className="flex items-center gap-4 md:gap-6 text-[#23A6F0] font-bold text-sm">
           <div className="flex items-center gap-2">
             {user.name ? (
@@ -138,15 +134,43 @@ const Header = () => {
           </div>
           
           <div className="flex items-center gap-4 text-xl">
-            <Icon icon="ic:outline-search" className="cursor-pointer" />
-            <div className="flex items-center gap-1 cursor-pointer">
-              <Icon icon="ic:outline-shopping-cart" />
-              <span className="text-xs font-normal">1</span>
+            <Icon icon="ic:outline-search" className="cursor-pointer text-[#23A6F0]" />
+            
+            {/* SEPET İKONU VE DROPDOWN */}
+            <div className="relative group py-2">
+              <Link to="/cart" className="flex items-center gap-1 cursor-pointer hover:opacity-80">
+                <Icon icon="ic:outline-shopping-cart" />
+                <span className="text-xs font-normal">{totalItems}</span>
+              </Link>
+              
+              {/* Hızlı Sepet Özeti Dropdown */}
+              {cart.length > 0 && (
+                <div className="absolute hidden group-hover:block right-0 top-full bg-white shadow-2xl border border-gray-100 rounded-lg w-72 p-4 z-50">
+                  <h4 className="text-[#252B42] text-sm font-bold mb-3 border-b pb-2">Sepetim ({totalItems} Ürün)</h4>
+                  <div className="max-h-60 overflow-y-auto">
+                    {cart.map((item) => (
+                      <div key={item.product.id} className="flex gap-3 mb-3 border-b border-gray-50 pb-2">
+                        <img src={item.product.images[0]?.url} alt="" className="w-12 h-12 object-cover rounded" />
+                        <div className="flex flex-col">
+                          <span className="text-[#252B42] text-xs truncate w-40">{item.product.name}</span>
+                          <span className="text-[#737373] text-[10px]">Adet: {item.count}</span>
+                          <span className="text-[#23856D] text-xs font-bold">${(item.product.price * item.count).toFixed(2)}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <Link to="/cart" className="block text-center bg-[#23A6F0] text-white text-xs py-2 rounded mt-2 hover:bg-[#1a8cd1] transition-colors">
+                    Sepete Git
+                  </Link>
+                </div>
+              )}
             </div>
-            <div className="flex items-center gap-1 cursor-pointer">
-              <Icon icon="ic:outline-favorite-border" />
-              <span className="text-xs font-normal">1</span>
-            </div>
+
+            {/* FAVORİ İKONU */}
+            <Link to="/favorites" className="flex items-center gap-1 cursor-pointer hover:opacity-80">
+              <Icon icon={favorites.length > 0 ? "ic:baseline-favorite" : "ic:outline-favorite-border"} className={favorites.length > 0 ? "text-red-500" : ""} />
+              <span className="text-xs font-normal">{favorites.length}</span>
+            </Link>
           </div>
         </div>
       </nav>

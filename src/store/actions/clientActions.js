@@ -1,12 +1,14 @@
-import { API } from '../../api/axiosInstance';
+import { API } from "../../api/axiosInstance";
+import { axiosWithAuth } from '../../api/axiosWithAuth';
 import { toast } from 'react-toastify';
+
 
 export const setRoles = (roles) => ({ type: 'SET_ROLES', payload: roles });
 
 export const fetchRoles = () => (dispatch, getState) => {
   const { roles } = getState().client;
   if (roles.length === 0) {
-    API.get('/roles')
+    API .get('/roles')
       .then(res => dispatch(setRoles(res.data)))
       .catch(err => console.error("Roller çekilemedi:", err));
   }
@@ -65,3 +67,16 @@ export const loginUser = (formData, navigate) => (dispatch) => {
     });
 };
 
+export const SET_ADDRESS_LIST = "SET_ADDRESS_LIST";
+
+// Thunk Action: Adresleri getirir ve Store'a kaydeder
+export const getAddressList = () => (dispatch) => {
+  axiosWithAuth()
+    .get('/user/address')
+    .then((res) => {
+      dispatch({ type: SET_ADDRESS_LIST, payload: res.data });
+    })
+    .catch((err) => {
+      console.error("Adresler yüklenirken hata oluştu:", err);
+    });
+};

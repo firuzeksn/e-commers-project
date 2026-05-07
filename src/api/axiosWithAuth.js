@@ -1,19 +1,16 @@
-import axios from 'axios';
+import axios from "axios";
 
-/**
- * axiosWithAuth, kimlik doğrulaması gereken (token isteyen) 
- * API istekleri için yapılandırılmış bir axios örneği döndürür.
- */
-export const axiosWithAuth = () => {
-  // LocalStorage'dan token'ı alıyoruz
-  const token = localStorage.getItem('token');
+const api = axios.create({
+  baseURL: "https://workintech-fe-ecommerce.onrender.com",
+});
 
-  return axios.create({
-    // API ana dizini (base URL)
-    baseURL: 'https://workintech-fe-ecommerce.onrender.com',
-    headers: {
-      // API dokümantasyonuna uygun olarak token'ı header'a ekliyoruz
-      Authorization: token,
-    },
-  });
-};
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    // "Bearer " prefix OLMADAN gönder — API böyle istiyor
+    config.headers.Authorization = token;
+  }
+  return config;
+});
+
+export const axiosWithAuth = () => api;

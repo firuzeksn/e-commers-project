@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 const PaymentForm = ({ onNext, onBack }) => {
   const [savedCards, setSavedCards] = useState([]);
   const [showNewCardForm, setShowNewCardForm] = useState(false);
-  const [selectedCardId, setSelectedCardId] = useState(null);
-  const [editingCard, setEditingCard] = useState(null); // ← eklendi
+  const [selectedCard, setSelectedCard] = useState(null); // id değil tüm kart objesi
+  const [editingCard, setEditingCard] = useState(null);
   const [loading, setLoading] = useState(false);
   const [shouldSave, setShouldSave] = useState(false);
   const [cvv, setCvv] = useState('');
@@ -24,8 +24,8 @@ const PaymentForm = ({ onNext, onBack }) => {
       .get('/user/card')
       .then(res => {
         setSavedCards(res.data);
-        setSelectedCardId(prev => 
-          prev === null && res.data.length > 0 ? res.data[0].id : prev
+        setSelectedCard(prev =>
+          prev === null && res.data.length > 0 ? res.data[0] : prev
         );
       })
       .catch(err => console.error("Kartlar yüklenemedi:", err));
@@ -35,7 +35,6 @@ const PaymentForm = ({ onNext, onBack }) => {
     fetchCards();
   }, []);
 
-  // Düzenleme moduna geçince formu doldur
   useEffect(() => {
     if (editingCard) {
       setNewCard({
@@ -45,7 +44,7 @@ const PaymentForm = ({ onNext, onBack }) => {
         name_on_card: editingCard.name_on_card,
       });
       setShowNewCardForm(true);
-      setSelectedCardId(null);
+      setSelectedCard(null);
     }
   }, [editingCard]);
 
@@ -56,7 +55,7 @@ const PaymentForm = ({ onNext, onBack }) => {
         .then(() => {
           toast.success("Kart silindi.");
           setSavedCards(prev => prev.filter(c => c.id !== id));
-          setSelectedCardId(prev => prev === id ? null : prev);
+          setSelectedCard(prev => prev?.id === id ? null : prev);
         })
         .catch(() => toast.error("Silme başarısız."));
     }
@@ -89,7 +88,6 @@ const PaymentForm = ({ onNext, onBack }) => {
         name_on_card: newCard.name_on_card,
       };
 
-      // Düzenleme mi yoksa yeni kart mı?
       if (editingCard) {
         setLoading(true);
         axiosWithAuth()
@@ -102,24 +100,39 @@ const PaymentForm = ({ onNext, onBack }) => {
           })
           .catch(() => toast.error("Kart güncellenemedi."))
           .finally(() => setLoading(false));
-        return; // onNext'e gitme, sadece kaydet
+        return;
       }
 
-      if (shouldSave) {
-        setLoading(true);
-        axiosWithAuth()
-          .post('/user/card', cardPayload)
-          .then(() => {
-            toast.success("Kartınız güvenli bir şekilde kaydedildi.");
-            onNext();
-          })
-          .catch(() => toast.error("Kart kaydedilirken bir hata oluştu."))
-          .finally(() => setLoading(false));
-      } else {
-        onNext();
+      if (!cvv || cvv.length < 3) {
+        toast.error("Lütfen CVV giriniz.");
+        return;
       }
+
+      // Yeni kart bilgilerini üst bileşene ilet
+      onNext({
+        card_no: cardPayload.card_no,
+        card_name: cardPayload.name_on_card,
+        card_expire_month: cardPayload.expire_month,
+        card_expire_year: cardPayload.expire_year,
+        card_ccv: parseInt(cvv),
+        shouldSave,
+        cardPayload,
+      });
+
     } else {
-      onNext();
+      // Kayıtlı kart seçili
+      if (!cvv || cvv.length < 3) {
+        toast.error("Lütfen CVV giriniz.");
+        return;
+      }
+
+      onNext({
+        card_no: selectedCard.card_no,
+        card_name: selectedCard.name_on_card,
+        card_expire_month: selectedCard.expire_month,
+        card_expire_year: selectedCard.expire_year,
+        card_ccv: parseInt(cvv),
+      });
     }
   };
 
@@ -131,27 +144,18 @@ const PaymentForm = ({ onNext, onBack }) => {
         {savedCards.map((card) => (
           <div
             key={card.id}
-            onClick={() => { setSelectedCardId(card.id); setShowNewCardForm(false); setEditingCard(null); }}
+            onClick={() => { setSelectedCard(card); setShowNewCardForm(false); setEditingCard(null); setCvv(''); }}
             className={`border-2 p-4 rounded-lg cursor-pointer transition-all ${
-              selectedCardId === card.id && !showNewCardForm ? 'border-[#23A6F0] bg-blue-50/30' : 'border-[#ECECEC]'
+              selectedCard?.id === card.id && !showNewCardForm ? 'border-[#23A6F0] bg-blue-50/30' : 'border-[#ECECEC]'
             }`}
           >
             <div className="flex justify-between items-center mb-4">
               <Icon icon="logos:mastercard" className="text-2xl" />
-              {/* Düzenle / Sil butonları */}
               <div className="flex gap-1" onClick={e => e.stopPropagation()}>
-                <button
-                  type="button"
-                  onClick={(e) => handleEdit(e, card)}
-                  className="p-1 text-blue-500 hover:bg-gray-100 rounded-full"
-                >
+                <button type="button" onClick={(e) => handleEdit(e, card)} className="p-1 text-blue-500 hover:bg-gray-100 rounded-full">
                   <Icon icon="mdi:pencil" width="16" />
                 </button>
-                <button
-                  type="button"
-                  onClick={(e) => handleDelete(e, card.id)}
-                  className="p-1 text-red-500 hover:bg-gray-100 rounded-full"
-                >
+                <button type="button" onClick={(e) => handleDelete(e, card.id)} className="p-1 text-red-500 hover:bg-gray-100 rounded-full">
                   <Icon icon="mdi:trash-can" width="16" />
                 </button>
               </div>
@@ -159,11 +163,26 @@ const PaymentForm = ({ onNext, onBack }) => {
             <p className="font-bold tracking-widest">**** **** **** {String(card.card_no).slice(-4)}</p>
             <p className="text-xs text-gray-500 uppercase mt-2 font-bold">{card.name_on_card}</p>
             <p className="text-xs text-gray-400 mt-1">{card.expire_month}/{card.expire_year}</p>
+
+            {/* Seçili kart için CVV girişi */}
+            {selectedCard?.id === card.id && !showNewCardForm && (
+              <div className="mt-3" onClick={e => e.stopPropagation()}>
+                <input
+                  type="password"
+                  placeholder="CVV"
+                  autoComplete="new-password"
+                  value={cvv}
+                  onChange={handleCvvChange}
+                  maxLength="3"
+                  className="w-full p-2 border rounded-md outline-none focus:ring-1 focus:ring-[#23A6F0] text-sm"
+                />
+              </div>
+            )}
           </div>
         ))}
 
         <div
-          onClick={() => { setShowNewCardForm(true); setSelectedCardId(null); setEditingCard(null); setCvv(''); setNewCard({ card_no: '', expire_month: '', expire_year: '', name_on_card: '' }); }}
+          onClick={() => { setShowNewCardForm(true); setSelectedCard(null); setEditingCard(null); setCvv(''); setNewCard({ card_no: '', expire_month: '', expire_year: '', name_on_card: '' }); }}
           className={`border-2 border-dashed rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer transition-all ${
             showNewCardForm && !editingCard ? 'border-[#23A6F0] text-[#23A6F0]' : 'border-gray-300 text-gray-400 hover:border-[#23A6F0]'
           }`}
@@ -179,59 +198,34 @@ const PaymentForm = ({ onNext, onBack }) => {
             {editingCard ? "Kartı Düzenle" : "Yeni Kart Bilgileri"}
           </h4>
           <div className="space-y-4">
-            <input
-              type="text"
-              placeholder="Kart Üzerindeki İsim"
-              value={newCard.name_on_card}
+            <input type="text" placeholder="Kart Üzerindeki İsim" value={newCard.name_on_card}
               className="w-full p-3 border rounded-md outline-none focus:ring-1 focus:ring-[#23A6F0]"
-              onChange={(e) => setNewCard({ ...newCard, name_on_card: e.target.value })}
-            />
-            <input
-              type="text"
-              placeholder="0000 0000 0000 0000"
-              value={newCard.card_no}
+              onChange={(e) => setNewCard({ ...newCard, name_on_card: e.target.value })} />
+            <input type="text" placeholder="0000 0000 0000 0000" value={newCard.card_no}
               className="w-full p-3 border rounded-md outline-none focus:ring-1 focus:ring-[#23A6F0]"
-              onChange={handleCardNumberChange}
-            />
+              onChange={handleCardNumberChange} />
             <div className="grid grid-cols-3 gap-2">
-              <input type="text" placeholder="MM" maxLength="2"
-                value={newCard.expire_month}
+              <input type="text" placeholder="MM" maxLength="2" value={newCard.expire_month}
                 className="p-3 border rounded-md outline-none focus:ring-1 focus:ring-[#23A6F0]"
                 onChange={(e) => setNewCard({ ...newCard, expire_month: e.target.value })} />
-              <input type="text" placeholder="YY" maxLength="2"
-                value={newCard.expire_year}
+              <input type="text" placeholder="YY" maxLength="2" value={newCard.expire_year}
                 className="p-3 border rounded-md outline-none focus:ring-1 focus:ring-[#23A6F0]"
                 onChange={(e) => setNewCard({ ...newCard, expire_year: e.target.value })} />
-              <input
-                type="password"
-                placeholder="CVV"
-                autoComplete="new-password"
-                value={cvv}
-                onChange={handleCvvChange}
-                maxLength="3"
-                className="p-3 border rounded-md outline-none focus:ring-1 focus:ring-[#23A6F0] bg-white"
-              />
+              <input type="password" placeholder="CVV" autoComplete="new-password"
+                value={cvv} onChange={handleCvvChange} maxLength="3"
+                className="p-3 border rounded-md outline-none focus:ring-1 focus:ring-[#23A6F0] bg-white" />
             </div>
 
-            {/* Düzenleme modunda kaydet butonu, yeni kartta checkbox */}
             {editingCard ? (
-              <button
-                type="button"
-                onClick={handleSubmitOrder}
-                disabled={loading}
-                className="w-full py-3 bg-[#23A6F0] text-white font-bold rounded-md hover:bg-[#1a8cd1] transition-all disabled:opacity-50"
-              >
+              <button type="button" onClick={handleSubmitOrder} disabled={loading}
+                className="w-full py-3 bg-[#23A6F0] text-white font-bold rounded-md hover:bg-[#1a8cd1] transition-all disabled:opacity-50">
                 {loading ? "Kaydediliyor..." : "Kartı Güncelle"}
               </button>
             ) : (
               <div className="flex items-center gap-2 pt-2">
-                <input
-                  type="checkbox"
-                  id="saveCardCheckbox"
+                <input type="checkbox" id="saveCardCheckbox"
                   className="w-4 h-4 accent-[#23A6F0] cursor-pointer"
-                  checked={shouldSave}
-                  onChange={(e) => setShouldSave(e.target.checked)}
-                />
+                  checked={shouldSave} onChange={(e) => setShouldSave(e.target.checked)} />
                 <label htmlFor="saveCardCheckbox" className="text-xs font-bold text-[#737373] cursor-pointer">
                   Bu kartı sonraki alışverişlerim için güvenli bir şekilde kaydet
                 </label>
@@ -245,11 +239,10 @@ const PaymentForm = ({ onNext, onBack }) => {
         <button onClick={onBack} className="text-gray-500 font-bold flex items-center gap-1 hover:text-black transition-colors">
           <Icon icon="mdi:chevron-left" /> Geri
         </button>
-        {/* Düzenleme modunda alt buton gizlenir */}
         {!editingCard && (
           <button
             onClick={handleSubmitOrder}
-            disabled={loading || (!selectedCardId && !showNewCardForm)}
+            disabled={loading || (!selectedCard && !showNewCardForm)}
             className="bg-[#23A6F0] text-white px-12 py-3 rounded-md font-bold shadow-md hover:bg-[#1a8cd1] active:scale-95 transition-all disabled:opacity-50"
           >
             {loading ? "İşleniyor..." : "Onay Ekranına Geç"}

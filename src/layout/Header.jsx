@@ -73,24 +73,17 @@ const Header = () => {
               <div className="flex flex-col gap-3">
                 <h3 className="text-[#252B42] text-base mb-2">Kadın</h3>
                 {womenCategories.map((cat) => (
-                  <Link 
-                    key={cat.id} 
-                    to={`/shop/kadin/${cat.title.toLowerCase()}/${cat.id}`}
-                    className="font-normal text-[#737373] hover:text-[#23A6F0] transition-colors"
-                  >
+                  <Link key={cat.id} to={`/shop/kadin/${cat.title.toLowerCase()}/${cat.id}`}
+                    className="font-normal text-[#737373] hover:text-[#23A6F0] transition-colors">
                     {cat.title}
                   </Link>
                 ))}
               </div>
-              
               <div className="flex flex-col gap-3">
                 <h3 className="text-[#252B42] text-base mb-2">Erkek</h3>
                 {menCategories.map((cat) => (
-                  <Link 
-                    key={cat.id} 
-                    to={`/shop/erkek/${cat.title.toLowerCase()}/${cat.id}`}
-                    className="font-normal text-[#737373] hover:text-[#23A6F0] transition-colors"
-                  >
+                  <Link key={cat.id} to={`/shop/erkek/${cat.title.toLowerCase()}/${cat.id}`}
+                    className="font-normal text-[#737373] hover:text-[#23A6F0] transition-colors">
                     {cat.title}
                   </Link>
                 ))}
@@ -107,19 +100,31 @@ const Header = () => {
         <div className="flex items-center gap-4 md:gap-6 text-[#23A6F0] font-bold text-sm">
           <div className="flex items-center gap-2">
             {user.name ? (
-              <div className="flex items-center gap-3">
+              // ← DROPDOWN MENÜ
+              <div className="relative group py-2">
                 <div className="flex items-center gap-2 cursor-pointer">
                   <div className="w-8 h-8 rounded-full bg-[#23A6F0] flex items-center justify-center text-white border-2 border-white shadow-sm">
                     <Icon icon="ic:baseline-person" className="text-xl" />
                   </div>
-                  <span className="text-[#252B42]">{user.name}</span>
+                  <span className="text-[#252B42] flex items-center gap-1">
+                    {user.name}
+                    <Icon icon="iconamoon:arrow-down-2-light" className="text-xl text-gray-400" />
+                  </span>
                 </div>
-                <button 
-                  onClick={handleLogout}
-                  className="text-[#E74040] hover:text-red-700 text-xs font-bold transition-colors border border-[#E74040] px-2 py-1 rounded"
-                >
-                  Logout
-                </button>
+
+                <div className="absolute hidden group-hover:flex flex-col top-full right-0 bg-white shadow-xl border border-gray-100 rounded-lg py-2 min-w-[180px] z-50 animate-fadeIn">
+                  <Link to="/orders"
+                    className="flex items-center gap-2 px-4 py-3 text-[#737373] hover:text-[#23A6F0] hover:bg-gray-50 transition-colors text-sm font-normal">
+                    <Icon icon="mdi:package-variant" className="text-lg" />
+                    Siparişlerim
+                  </Link>
+                  <div className="border-t border-gray-100 my-1" />
+                  <button onClick={handleLogout}
+                    className="flex items-center gap-2 px-4 py-3 text-[#E74040] hover:bg-red-50 transition-colors text-sm font-normal w-full text-left">
+                    <Icon icon="mdi:logout" className="text-lg" />
+                    Çıkış Yap
+                  </button>
+                </div>
               </div>
             ) : (
               <div className="flex items-center gap-2">
@@ -136,14 +141,12 @@ const Header = () => {
           <div className="flex items-center gap-4 text-xl">
             <Icon icon="ic:outline-search" className="cursor-pointer text-[#23A6F0]" />
             
-            {/* SEPET İKONU VE DROPDOWN */}
             <div className="relative group py-2">
               <Link to="/cart" className="flex items-center gap-1 cursor-pointer hover:opacity-80">
                 <Icon icon="ic:outline-shopping-cart" />
                 <span className="text-xs font-normal">{totalItems}</span>
               </Link>
               
-              {/* Hızlı Sepet Özeti Dropdown */}
               {cart.length > 0 && (
                 <div className="absolute hidden group-hover:block right-0 top-full bg-white shadow-2xl border border-gray-100 rounded-lg w-72 p-4 z-50">
                   <h4 className="text-[#252B42] text-sm font-bold mb-3 border-b pb-2">Sepetim ({totalItems} Ürün)</h4>
@@ -166,7 +169,6 @@ const Header = () => {
               )}
             </div>
 
-            {/* FAVORİ İKONU */}
             <Link to="/favorites" className="flex items-center gap-1 cursor-pointer hover:opacity-80">
               <Icon icon={favorites.length > 0 ? "ic:baseline-favorite" : "ic:outline-favorite-border"} className={favorites.length > 0 ? "text-red-500" : ""} />
               <span className="text-xs font-normal">{favorites.length}</span>

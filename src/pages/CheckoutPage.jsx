@@ -16,9 +16,10 @@ const CheckoutPage = () => {
   const [step, setStep] = useState(1); 
   const [isOrdered, setIsOrdered] = useState(false);
   const [showAddressForm, setShowAddressForm] = useState(false);
-  const [editingAddress, setEditingAddress] = useState(null); // ← eklendi
+  const [editingAddress, setEditingAddress] = useState(null);
   const [addressList, setAddressList] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(null);
+  const [cardInfo, setCardInfo] = useState(null); // ← eklendi
 
   const totalPrice = cart.reduce((total, item) => total + (item.product.price * item.count), 0).toFixed(2);
 
@@ -33,7 +34,6 @@ const CheckoutPage = () => {
     fetchAddresses();
   }, []);
 
-  // Silme işlemi eklendi
   const handleDelete = (id) => {
     if (window.confirm("Bu adresi silmek istediğinize emin misiniz?")) {
       axiosWithAuth().delete(`/user/address/${id}`)
@@ -46,10 +46,31 @@ const CheckoutPage = () => {
     }
   };
 
+  // T22: POST /order ile siparişi tamamla
   const handleFinishOrder = () => {
-    dispatch(clearCart());
-    setIsOrdered(true);
-    toast.success("Siparişiniz başarıyla alındı!");
+    const orderPayload = {
+      address_id: selectedAddress.id,
+      order_date: new Date().toISOString(),
+      card_no: parseInt(cardInfo.card_no),
+      card_name: cardInfo.card_name,
+      card_expire_month: cardInfo.card_expire_month,
+      card_expire_year: cardInfo.card_expire_year,
+      card_ccv: cardInfo.card_ccv,
+      price: parseFloat(totalPrice),
+      products: cart.map(item => ({
+        product_id: item.product.id,
+        count: item.count,
+        detail: item.product.name,
+      })),
+    };
+
+    axiosWithAuth().post('/order', orderPayload)
+      .then(() => {
+        dispatch(clearCart());
+        setIsOrdered(true);
+        toast.success("Siparişiniz başarıyla alındı!");
+      })
+      .catch(() => toast.error("Sipariş oluşturulamadı."));
   };
 
   if (isOrdered) {
@@ -69,11 +90,10 @@ const CheckoutPage = () => {
   return (
     <div className="bg-[#FAFAFA] min-h-screen py-8 md:py-12 px-4 md:px-20 lg:px-44 font-montserrat">
       
-      {/* AddressForm — prop ismi düzeltildi, editingAddress eklendi */}
       {showAddressForm && (
         <AddressForm 
           onClose={() => { setShowAddressForm(false); setEditingAddress(null); }} 
-          onAddressUpdated={fetchAddresses}  // ← onAddressAdded değil, onAddressUpdated!
+          onAddressUpdated={fetchAddresses}
           editData={editingAddress}
         />
       )}
@@ -107,20 +127,15 @@ const CheckoutPage = () => {
                       <h4 className="font-bold text-[#252B42] flex items-center gap-2">
                         <Icon icon="mdi:map-marker" className="text-[#23A6F0]" /> {addr.title}
                       </h4>
-                      {/* Düzenle / Sil butonları */}
                       <div className="flex gap-1" onClick={e => e.stopPropagation()}>
-                        <button
-                          type="button"
+                        <button type="button"
                           onClick={() => { setEditingAddress(addr); setShowAddressForm(true); }}
-                          className="p-1 text-blue-500 hover:bg-gray-100 rounded-full"
-                        >
+                          className="p-1 text-blue-500 hover:bg-gray-100 rounded-full">
                           <Icon icon="mdi:pencil" width="16" />
                         </button>
-                        <button
-                          type="button"
+                        <button type="button"
                           onClick={() => handleDelete(addr.id)}
-                          className="p-1 text-red-500 hover:bg-gray-100 rounded-full"
-                        >
+                          className="p-1 text-red-500 hover:bg-gray-100 rounded-full">
                           <Icon icon="mdi:trash-can" width="16" />
                         </button>
                       </div>
@@ -130,7 +145,6 @@ const CheckoutPage = () => {
                   </div>
                 ))}
 
-                {/* Yeni Adres Ekle */}
                 <div 
                   onClick={() => { setEditingAddress(null); setShowAddressForm(true); }}
                   className="border-2 border-dashed border-[#23A6F0] bg-white rounded-lg p-8 flex flex-col items-center justify-center text-[#23A6F0] hover:bg-[#23A6F0]/5 cursor-pointer transition-all min-h-[160px]"
@@ -154,7 +168,16 @@ const CheckoutPage = () => {
 
           {step === 2 && (
             <PaymentForm 
-              onNext={() => setStep(3)} 
+              onNext={(cardData) => {
+                // Yeni kart kaydedilecekse önce kaydet
+                if (cardData.shouldSave) {
+                  axiosWithAuth().post('/user/card', cardData.cardPayload)
+                    .then(() => toast.success("Kart kaydedildi."))
+                    .catch(() => {});
+                }
+                setCardInfo(cardData);
+                setStep(3);
+              }}
               onBack={() => setStep(1)} 
             />
           )}
@@ -163,8 +186,10 @@ const CheckoutPage = () => {
             <div className="animate-fadeIn flex flex-col items-center py-10">
               <div className="bg-[#2D8C69] w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-md text-white text-5xl">✓</div>
               <h2 className="text-3xl font-bold text-[#252B42] mb-4">Her şey hazır!</h2>
+              <p className="text-gray-500 mb-2">Teslimat: <span className="font-bold text-[#252B42]">{selectedAddress?.title} — {selectedAddress?.city}</span></p>
+              <p className="text-gray-500 mb-6">Kart: <span className="font-bold text-[#252B42]">**** **** **** {cardInfo?.card_no?.slice(-4)}</span></p>
               <button onClick={handleFinishOrder} className="bg-[#2D8C69] text-white px-12 py-4 rounded-md font-bold text-xl shadow-xl">
-                Siparişi Tamamla (${totalPrice})
+                Siparişi Tamamla ({totalPrice}₺)
               </button>
             </div>
           )}
@@ -180,14 +205,14 @@ const CheckoutPage = () => {
                   <img src={item.product.images[0]?.url} className="w-16 h-16 object-contain rounded-md bg-[#F3F3F3]" alt="" />
                   <div className="flex-grow flex flex-col justify-center">
                     <p className="font-bold text-[#252B42] text-sm">{item.product.name}</p>
-                    <p className="text-[#737373] text-xs">Adet: {item.count} - ${item.product.price}</p>
+                    <p className="text-[#737373] text-xs">Adet: {item.count} - {item.product.price}₺</p>
                   </div>
                 </div>
               ))}
             </div>
             <div className="flex justify-between font-bold text-xl text-[#252B42] pt-4 border-t-2">
               <span>Genel Toplam</span>
-              <span className="text-[#2D8C69]">${totalPrice}</span>
+              <span className="text-[#2D8C69]">{totalPrice}₺</span>
             </div>
           </div>
         </div>

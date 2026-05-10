@@ -14,27 +14,20 @@ export const fetchRoles = () => (dispatch, getState) => {
   }
 };
 
-// --- T11: Auto Login / Verify Token Thunk ---
 export const verifyToken = () => (dispatch) => {
   const token = localStorage.getItem("token");
 
   if (token) {
-    // T11: put token to axios authorization header
-    // NOT: Bearer prefix eklemiyoruz
     API.defaults.headers.common["Authorization"] = token;
 
     API.get("/verify")
       .then((res) => {
-        // T11: if token authorized, put User object to reducer
         dispatch({ type: "SET_USER", payload: res.data });
-        
-        // T11: renew token in localStorage & axios header
         localStorage.setItem("token", res.data.token);
         API.defaults.headers.common["Authorization"] = res.data.token;
       })
       .catch((err) => {
         console.error("Token geçersiz:", err);
-        // T11: if token is not authorized, delete token from localStorage & axios
         localStorage.removeItem("token");
         delete API.defaults.headers.common["Authorization"];
       });
@@ -44,17 +37,11 @@ export const verifyToken = () => (dispatch) => {
 export const loginUser = (formData, navigate) => (dispatch) => {
   API.post("/login", formData)
     .then((res) => {
-      // 1. Redux state güncelle
       dispatch({ type: "SET_USER", payload: res.data });
-      
-      // 2. Axios header'ı HEMEN güncelle (T11 kuralı)
       API.defaults.headers.common["Authorization"] = res.data.token;
-
-      // 3. Eğer "Beni Hatırla" seçiliyse localStorage'a yaz
       if (formData.remember) {
         localStorage.setItem("token", res.data.token);
       } else {
-        // Seçili değilse eski token'ı temizle ki verify hatası almayalım
         localStorage.removeItem("token");
       }
 
@@ -69,7 +56,6 @@ export const loginUser = (formData, navigate) => (dispatch) => {
 
 export const SET_ADDRESS_LIST = "SET_ADDRESS_LIST";
 
-// Thunk Action: Adresleri getirir ve Store'a kaydeder
 export const getAddressList = () => (dispatch) => {
   axiosWithAuth()
     .get('/user/address')

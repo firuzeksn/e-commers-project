@@ -8,14 +8,14 @@ export default function FeaturedContent() {
         <div className="w-full lg:w-1/2 flex gap-4 h-[450px] md:h-[600px]">
           <div className="w-1/2 h-full rounded-2xl overflow-hidden shadow-lg">
             <img 
-              src="src/assets/beyaz kazakı gözlüklü kız.jpg" 
+              src="/beyaz kazakı gözlüklü kız.jpg" 
               alt="Model 1" 
               className="w-full h-full object-cover"
             />
           </div>
           <div className="w-1/2 h-full rounded-2xl overflow-hidden shadow-lg">
             <img 
-              src="src/assets/turuncu kıyafetli kız.avif" 
+              src="/turuncu kıyafetli kız.avif" 
               alt="Model 2" 
               className="w-full h-full object-cover"
             />

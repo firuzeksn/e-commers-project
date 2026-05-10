@@ -1,18 +1,15 @@
 import { API } from "../../api/axiosInstance";
 
-// Action Types... (aynı kalıyor)
 export const SET_CATEGORIES = "SET_CATEGORIES";
 export const SET_PRODUCTS = "SET_PRODUCTS";
 export const SET_TOTAL = "SET_TOTAL";
 export const SET_FETCH_STATE = "SET_FETCH_STATE";
 
-// Action Creators... (aynı kalıyor)
 export const setCategories = (categories) => ({ type: SET_CATEGORIES, payload: categories });
 export const setProducts = (products) => ({ type: SET_PRODUCTS, payload: products });
 export const setTotal = (total) => ({ type: SET_TOTAL, payload: total });
 export const setFetchState = (fetchState) => ({ type: SET_FETCH_STATE, payload: fetchState });
 
-// T12: Kategorileri Getir... (aynı kalıyor)
 export const fetchCategories = () => (dispatch) => {
   API.get("/categories")
     .then((res) => {
@@ -21,7 +18,6 @@ export const fetchCategories = () => (dispatch) => {
     .catch((err) => console.error("Kategoriler çekilemedi:", err));
 };
 
-// T14: GÜNCELLENMİŞ Ürünleri Getir (Query Params Destekli)
 export const fetchProducts = (category, filter, sort, limit = 25, offset = 0) => (dispatch) => {
   dispatch(setFetchState("FETCHING"));
   
@@ -36,7 +32,6 @@ export const fetchProducts = (category, filter, sort, limit = 25, offset = 0) =>
 
   API.get("/products", { params })
     .then((res) => {
-      // API'den gelen verileri store'a yaz
       dispatch(setProducts(res.data.products));
       dispatch(setTotal(res.data.total));
       dispatch(setFetchState("FETCHED"));
@@ -50,12 +45,11 @@ export const fetchProducts = (category, filter, sort, limit = 25, offset = 0) =>
 export const setProductDetail = (product) => ({ type: "SET_PRODUCT_DETAIL", payload: product });
 
 export const fetchProductDetail = (productId) => (dispatch) => {
-  dispatch({ type: "SET_FETCH_STATE", payload: "FETCHING" }); // Yükleniyor durumunu başlat
+  dispatch({ type: "SET_FETCH_STATE", payload: "FETCHING" }); 
   
   API
     .get(`/products/${productId}`)
     .then((res) => {
-      // BURASI KRİTİK: Reducer'daki productDetail'i güncelleyen yer burası
       dispatch({ type: "SET_PRODUCT_DETAIL", payload: res.data }); 
       dispatch({ type: "SET_FETCH_STATE", payload: "FETCHED" });
     })

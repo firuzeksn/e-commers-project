@@ -25,7 +25,7 @@ export default function HeroSection() {
           <div className="hidden md:flex absolute right-0 bottom-0 h-full w-1/2 items-end justify-end overflow-hidden">
             <div className="absolute right-[-5%] bottom-[-5%] w-[110%] h-[110%] bg-white rounded-full z-0 translate-x-10 translate-y-10"></div>
             <img 
-              src="src/assets/portrait-beautiful-ginger-girl-touching-hair-smiling-showing-tongue.png" 
+              src="/portrait-beautiful-ginger-girl-touching-hair-smiling-showing-tongue.png" 
               className="relative h-[95%] object-cover z-20 translate-y-2 translate-x-10" 
               alt="Model"
             />

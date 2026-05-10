@@ -10,22 +10,22 @@ const EditorsPick = () => {
       
       <div className="flex flex-col md:flex-row gap-8 w-full max-w-7xl h-auto md:h-[500px]">
         <div className="relative flex-1 group overflow-hidden">
-          <img src="src/assets/men.jpg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Men" />
+          <img src="/men.jpg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Men" />
           <div className="absolute bottom-6 left-6 bg-white px-12 py-3 font-bold uppercase text-[#252B42] shadow-md">Men</div>
         </div>
 
         <div className="relative flex-1 group overflow-hidden">
-          <img src="src/assets/women.jpg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Women" />
+          <img src="/women.jpg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Women" />
           <div className="absolute bottom-6 left-6 bg-white px-10 py-3 font-bold uppercase text-[#252B42] shadow-md">Women</div>
         </div>
 
         <div className="flex-1 flex flex-col gap-8">
           <div className="relative h-1/2 group overflow-hidden">
-            <img src="src/assets/accessories.jpg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Accessories" />
+            <img src="/accessories.jpg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Accessories" />
             <div className="absolute bottom-6 left-6 bg-white px-6 py-3 font-bold uppercase text-[#252B42] shadow-md">Accessories</div>
           </div>
           <div className="relative h-1/2 group overflow-hidden">
-            <img src="src/assets/kids.jpg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Kids" />
+            <img src="/kids.jpg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Kids" />
             <div className="absolute bottom-6 left-6 bg-white px-10 py-3 font-bold uppercase text-[#252B42] shadow-md">Kids</div>
           </div>
         </div>

@@ -2,10 +2,10 @@ import React from 'react';
 
 export default function BestsellerProducts() {
   const modelImages = [
-    "src/assets/resim2.jpg", "src/assets/resim3.jpg", "src/assets/resim4.jpg",
-    "src/assets/resim5.jpg", "src/assets/resim6.jpg", "src/assets/resim7.jpg",
-    "src/assets/resim8.jpg", "src/assets/resim9.jpg", "src/assets/resim10.jpg",
-    "src/assets/resim11.jpg"
+    "/resim2.jpg", "/resim3.jpg", "/resim4.jpg",
+    "/resim5.jpg", "/resim6.jpg", "/resim7.jpg",
+    "/resim8.jpg", "/resim9.jpg", "/resim10.jpg",
+    "/resim11.jpg"
   ];
 
   const products = modelImages.map((imgSrc, index) => ({

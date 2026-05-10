@@ -23,10 +23,10 @@ export default function HeroSection() {
           </div>
 
           <div className="hidden md:flex absolute right-0 bottom-0 h-full w-1/2 items-end justify-end overflow-hidden">
-            <div className="absolute right-[-5%] bottom-[-5%] w-[110%] h-[110%] bg-white rounded-full z-0 translate-x-10 translate-y-10"></div>
+            
             <img 
-              src="src/assets/portrait-beautiful-ginger-girl-touching-hair-smiling-showing-tongue.png" 
-              className="relative h-[95%] object-cover z-20 translate-y-2 translate-x-10" 
+              src="https://img.freepik.com/free-photo/portrait-beautiful-ginger-girl-touching-hair-smiling-showing-tongue_176420-9210.jpg?semt=ais_hybrid&w=740&q=80https://pikaso.cdnpk.net/private/production/4254458017/upload.png?token=exp=1778630400~hmac=cb07e1d9bfd60f4c3f0a57fb3c96870eb291ec5f201ffa2b7e73898e9e26c36d&preview=1https://www.magnific.com/free-photo/portrait-beautiful-ginger-girl-touching-hair-smiling-showing-tongue_8467112.htm#from_element=cross_selling__photo?log-in=googledata:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB9AA…c3RNPPPHEE088+ZrlnwGQ6U/dk0rSZAAAAABJRU5ErkJggg==" 
+              className="relative h-[110%] object-cover z-20 translate-y-2 translate-x-10" 
               alt="Model"
             />
           </div>

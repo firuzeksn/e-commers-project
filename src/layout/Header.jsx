@@ -90,7 +90,6 @@ const Header = () => {
           </li>
 
           <li><Link to="/about" className="hover:text-[#252B42]">About</Link></li>
-          <li><Link to="/blog" className="hover:text-[#252B42]">Blog</Link></li>
           <li><Link to="/contact" className="hover:text-[#252B42]">Contact</Link></li>
           <li><Link to="/team" className="hover:text-[#252B42]">Team</Link></li>
         </ul>

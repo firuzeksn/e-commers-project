@@ -19,7 +19,7 @@ const AboutPage = () => {
         <div className="flex-1 relative flex justify-center">
           <div className="absolute top-0 w-72 h-72 bg-[#FFE9EA] rounded-full -z-10"></div>
           <img 
-            src="src\assets\aboutPhoto.7b7672a306852cdecc3f.png" 
+            src="https://my-new-style.vercel.app/static/media/aboutPhoto.7b7672a306852cdecc3f.png" 
             alt="About Us" 
             className="w-full max-w-md h-auto object-contain relative z-10"
           />

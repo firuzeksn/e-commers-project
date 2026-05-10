@@ -3,7 +3,6 @@ import React from 'react';
 const ProductCard = ({ image, title, department, oldPrice, newPrice }) => {
   return (
     <div className="flex flex-col items-center gap-4 group cursor-pointer">
-      {/* Ürün Görseli */}
       <div className="overflow-hidden w-full h-[360px]">
         <img 
           src={image} 
@@ -12,7 +11,6 @@ const ProductCard = ({ image, title, department, oldPrice, newPrice }) => {
         />
       </div>
       
-      {/* Ürün Bilgileri */}
       <div className="flex flex-col items-center gap-2 pb-8">
         <h5 className="text-[#252B42] font-bold text-base">{title}</h5>
         <p className="text-[#737373] font-bold text-sm">{department}</p>
@@ -21,7 +19,6 @@ const ProductCard = ({ image, title, department, oldPrice, newPrice }) => {
           <span className="text-[#23856D]">${newPrice}</span>
         </div>
         
-        {/* Renk Seçenekleri (Figma'daki o küçük daireler) */}
         <div className="flex gap-1.5 mt-2">
           <div className="w-4 h-4 bg-[#23A6F0] rounded-full"></div>
           <div className="w-4 h-4 bg-[#23856D] rounded-full"></div>

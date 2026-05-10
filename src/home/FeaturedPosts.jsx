@@ -7,18 +7,15 @@ export default function FeaturedPosts() {
   return (
     <section className="py-20 px-4 md:px-24 bg-white">
       <div className="container mx-auto">
-        {/* Başlık Grubu */}
         <div className="flex flex-col items-center text-center gap-2 mb-20">
           <h4 className="text-[#23A6F0] font-bold text-sm tracking-wide">Practice Advice</h4>
           <h2 className="text-[#252B42] text-[40px] font-bold">Featured Posts</h2>
         </div>
 
-        {/* Post Kartları Grid Yapısı */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {posts.map((item) => (
             <div key={item} className="flex flex-col md:flex-row shadow-sm border border-[#E8E8E8] rounded-lg overflow-hidden transition-all hover:shadow-xl">
               
-              {/* Sol Taraf: Görsel ve Overlay İkonlar */}
               <div className="relative w-full md:w-[40%] h-[300px] md:h-auto">
                 <img 
                   src={item === 1 ? "src/assets/havai.jpg" : "src/assets/images.jpg"} 
@@ -29,7 +26,6 @@ export default function FeaturedPosts() {
                   Sale
                 </div>
                 
-                {/* Alt Orta İkonlar */}
                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
                   <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-[#23A6F0] hover:text-white transition-colors">
                     <Icon icon="ant-design:heart-outlined" className="text-xl" />
@@ -43,7 +39,6 @@ export default function FeaturedPosts() {
                 </div>
               </div>
 
-              {/* Sağ Taraf: İçerik Bilgileri */}
               <div className="w-full md:w-[60%] p-8 flex flex-col gap-4 bg-white">
                 <div className="flex justify-between items-center">
                   <span className="text-[#23A6F0] font-bold text-sm">English Department</span>
@@ -68,7 +63,6 @@ export default function FeaturedPosts() {
                   <span className="text-[#23856D]">$6.48</span>
                 </div>
 
-                {/* Renk Noktaları */}
                 <div className="flex gap-2 my-2">
                   <div className="w-4 h-4 bg-[#23A6F0] rounded-full cursor-pointer"></div>
                   <div className="w-4 h-4 bg-[#23856D] rounded-full cursor-pointer"></div>
@@ -76,7 +70,6 @@ export default function FeaturedPosts() {
                   <div className="w-4 h-4 bg-[#252B42] rounded-full cursor-pointer"></div>
                 </div>
 
-                {/* Alt Bilgi İkonları */}
                 <div className="flex items-center gap-4 text-[#737373] text-xs font-semibold mt-auto pt-4 border-t border-[#F1F1F1]">
                   <div className="flex items-center gap-1">
                     <Icon icon="ant-design:clock-circle-outlined" className="text-[#23A6F0] text-sm" />
@@ -92,7 +85,6 @@ export default function FeaturedPosts() {
                   </div>
                 </div>
 
-                {/* Learn More Butonu */}
                 <button className="flex items-center gap-2 text-[#23A6F0] font-bold text-sm border border-[#23A6F0] rounded-full px-5 py-2 w-fit mt-4 hover:bg-[#23A6F0] hover:text-white transition-all group">
                   Learn More 
                   <Icon icon="ant-design:right-outlined" className="group-hover:translate-x-1 transition-transform" />

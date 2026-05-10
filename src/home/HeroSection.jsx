@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom"; // Eksik olan satır bu!
+import { Link } from "react-router-dom"; 
 export default function HeroSection() {
   return (
     <div className="w-full mt-12">

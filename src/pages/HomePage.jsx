@@ -5,7 +5,6 @@ import TopProducts from '../home/TopProducts';
 import BestsellerProducts from '../home/BestsellerProducts';
 import FeaturedContent from '../home/FeaturedContent';
 import Services from '../home/Services';
-// FeaturedPosts senin yapında 'home' klasöründe olduğu için:
 import FeaturedPosts from '../home/FeaturedPosts'; 
 
 export default function HomePage() {

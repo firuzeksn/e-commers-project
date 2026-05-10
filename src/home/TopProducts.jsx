@@ -4,7 +4,6 @@ export default function TopProducts() {
   return (
     <section className="py-12 px-4 md:px-24 bg-[#FAFAFA]">
       <div className="container mx-auto flex flex-col md:flex-row gap-4 h-auto md:h-[600px]">
-        {/* Sol Taraf: Büyük Görsel */}
         <div className="relative w-full md:w-1/2 h-[500px] md:h-full overflow-hidden group">
           <img 
             src="src/assets/fashionable-man-woman-sitting-stair.jpg" 
@@ -19,9 +18,7 @@ export default function TopProducts() {
           </div>
         </div>
 
-        {/* Sağ Taraf: İki Küçük Görsel */}
         <div className="w-full md:w-1/2 flex flex-col gap-4 h-full">
-          {/* Üstteki Görsel */}
           <div className="relative h-[300px] md:h-1/2 overflow-hidden group">
             <img 
               src="src/assets/pexels-warley-venancio-4255179-1365x2048.jpg.webp" 
@@ -36,7 +33,6 @@ export default function TopProducts() {
             </div>
           </div>
           
-          {/* Alttaki Görsel */}
           <div className="relative h-[300px] md:h-1/2 overflow-hidden group">
             <img 
               src="src/assets/blog-2_1296x.webp" 

@@ -18,7 +18,6 @@ import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import PreviousOrdersPage from './pages/PreviousOrdersPage';
 
-// Protected Route — giriş yapılmamışsa login'e yönlendir
 const ProtectedRoute = ({ element }) => {
   const user = useSelector(state => state.client.user);
   return user ? element : <Navigate to="/login" replace />;
@@ -48,8 +47,6 @@ function App() {
         <Route path="/shop/:productId" element={<ProductDetailPage />} />
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/" element={<HomePage />} />
-
-        {/* Protected Routes */}
         <Route path="/checkout" element={<ProtectedRoute element={<CheckoutPage />} />} />
         <Route path="/orders" element={<ProtectedRoute element={<PreviousOrdersPage />} />} />
       </Routes>

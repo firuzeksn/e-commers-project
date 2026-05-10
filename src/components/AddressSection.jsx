@@ -13,7 +13,7 @@ const AddressSection = ({ onNext }) => {
   const fetchAddresses = useCallback(() => {
   return axiosWithAuth().get('/user/address')
     .then(res => {
-      console.log("GELEN VERİ:", res.data); // Bunu ekle
+      console.log("GELEN VERİ:", res.data); 
       setAddresses(res.data);
       setSelectedAddressId(prev =>
         prev === null && res.data.length > 0 ? res.data[0].id : prev
@@ -32,7 +32,7 @@ const AddressSection = ({ onNext }) => {
       axiosWithAuth().delete(`/user/address/${id}`)
         .then(() => {
           toast.success("Adres silindi.");
-          setAddresses(prev => prev.filter(a => a.id !== id));        // Direkt state güncelle
+          setAddresses(prev => prev.filter(a => a.id !== id));       
           setSelectedAddressId(prev => prev === id ? null : prev);
         })
         .catch(() => toast.error("Silme işlemi başarısız."));

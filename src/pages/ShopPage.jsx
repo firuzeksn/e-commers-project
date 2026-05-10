@@ -4,7 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../store/actions/productActions';
 
-// URL dostu isimler oluşturmak için yardımcı fonksiyon
 const createSlug = (text) => {
   return text
     .toLowerCase()
@@ -42,7 +41,6 @@ const ShopPage = () => {
 
   return (
     <div className="w-full bg-white font-montserrat">
-      {/* BREADCRUMB */}
       <div className="bg-[#FAFAFA] py-10 px-4 md:px-44 flex flex-col md:flex-row justify-between items-center gap-4">
         <h2 className="text-[#252B42] text-2xl font-bold">Shop</h2>
         <div className="flex items-center gap-2 font-bold text-sm">
@@ -52,7 +50,6 @@ const ShopPage = () => {
         </div>
       </div>
 
-      {/* KATEGORİ KARTLARI */}
       <div className="bg-[#FAFAFA] pb-12 px-4 md:px-32">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
           {topFive.map((item) => (
@@ -70,7 +67,6 @@ const ShopPage = () => {
         </div>
       </div>
 
-      {/* FİLTRELEME ÇUBUĞU */}
       <div className="py-6 px-4 md:px-44 flex flex-col md:flex-row justify-between items-center gap-6">
         <p className="text-[#737373] font-bold text-sm">
           Showing {products?.length || 0} of {total || 0} results
@@ -96,7 +92,6 @@ const ShopPage = () => {
         </div>
       </div>
 
-      {/* ÜRÜN LİSTESİ */}
       <div className="px-4 md:px-44 py-16 min-h-[400px]">
         {fetchState === "FETCHING" ? (
           <div className="flex justify-center py-20">
@@ -128,7 +123,6 @@ const ShopPage = () => {
           </div>
         )}
 
-        {/* SAYFALAMA */}
         {fetchState === "FETCHED" && totalPages > 1 && (
           <div className="flex justify-center mt-24">
             <div className="flex border border-[#E8E8E8] rounded-lg overflow-hidden font-bold">

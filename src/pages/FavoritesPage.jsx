@@ -32,7 +32,6 @@ const FavoritesPage = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {favorites.map((product) => (
           <div key={product.id} className="bg-white rounded-lg shadow-sm border border-[#ECECEC] overflow-hidden group flex flex-col">
-            {/* Ürün Görseli */}
             <div className="relative overflow-hidden h-64">
               <img 
                 src={product.images?.[0]?.url} 
@@ -47,7 +46,6 @@ const FavoritesPage = () => {
               </button>
             </div>
 
-            {/* Ürün Bilgileri */}
             <div className="p-4 flex flex-col flex-grow gap-2">
               <h3 className="font-bold text-[#252B42] truncate">{product.name}</h3>
               <p className="text-[#737373] text-xs line-clamp-2 h-8">{product.description}</p>

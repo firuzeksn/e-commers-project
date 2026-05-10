@@ -31,7 +31,6 @@ const Header = () => {
 
   return (
     <header className="w-full flex flex-col font-montserrat sticky top-0 z-50 shadow-sm">
-      {/* 1. ÜST BAR */}
       <div className={`${topBarColor} text-white py-3 px-4 md:px-8 hidden lg:flex justify-between items-center text-sm font-bold transition-colors duration-300`}>
         <div className="flex gap-6">
           <div className="flex items-center gap-2">
@@ -55,7 +54,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* 2. BEYAZ ANA NAVİGASYON */}
       <nav className="py-4 px-4 md:px-8 flex justify-between items-center bg-white">
         <div className="text-[#252B42] text-2xl font-bold tracking-tight">
           <Link to="/">Bandage</Link>
@@ -100,7 +98,6 @@ const Header = () => {
         <div className="flex items-center gap-4 md:gap-6 text-[#23A6F0] font-bold text-sm">
           <div className="flex items-center gap-2">
             {user.name ? (
-              // ← DROPDOWN MENÜ
               <div className="relative group py-2">
                 <div className="flex items-center gap-2 cursor-pointer">
                   <div className="w-8 h-8 rounded-full bg-[#23A6F0] flex items-center justify-center text-white border-2 border-white shadow-sm">

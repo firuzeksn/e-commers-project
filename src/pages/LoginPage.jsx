@@ -1,7 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-// useHistory yerine useNavigate import ediyoruz
 import { useNavigate } from 'react-router-dom'; 
 import { toast } from 'react-toastify';
 import { loginUser } from '../store/actions/clientActions';
@@ -9,11 +8,9 @@ import { loginUser } from '../store/actions/clientActions';
 const LoginPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const dispatch = useDispatch();
-  // history yerine navigate tanımlıyoruz
   const navigate = useNavigate(); 
 
   const onSubmit = (data) => {
-    // ARTIK BURADA MANUEL VERİ YOK, THUNK'I TETİKLİYORUZ
     dispatch(loginUser(data, navigate));
   };
 

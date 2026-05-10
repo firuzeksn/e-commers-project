@@ -5,17 +5,17 @@ export default function Services() {
   return (
     <section className="py-20 px-4 md:px-24 bg-white">
       <div className="container mx-auto">
-        {/* Başlık Grubu */}
+
         <div className="flex flex-col items-center text-center gap-2 mb-20">
           <h4 className="text-[#737373] text-xl font-medium">Featured Products</h4>
           <h2 className="text-[#252B42] text-2xl font-bold uppercase tracking-wider">THE BEST SERVICES</h2>
           <p className="text-[#737373] text-sm">Problems trying to resolve the conflict between </p>
         </div>
 
-        {/* Hizmet Kartları Grid Yapısı */}
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           
-          {/* 1. Hizmet: Easy Wins */}
+
           <div className="flex flex-col items-center text-center gap-4 group">
             <div className="w-20 h-20 mb-2 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
               <Icon 
@@ -29,7 +29,6 @@ export default function Services() {
             </p>
           </div>
 
-          {/* 2. Hizmet: Concrete */}
           <div className="flex flex-col items-center text-center gap-4 group">
             <div className="w-20 h-20 mb-2 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
               <Icon icon="carbon:book" className="w-full h-full text-[#23A6F0]" />
@@ -40,7 +39,7 @@ export default function Services() {
             </p>
           </div>
 
-          {/* 3. Hizmet: Hack Growth */}
+
           <div className="flex flex-col items-center text-center gap-4 group">
             <div className="w-20 h-20 mb-2 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 text-[#23A6F0]">
               <Icon icon="ant-design:line-chart-outlined" className="text-7xl" />

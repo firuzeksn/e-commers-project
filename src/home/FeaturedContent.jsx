@@ -5,7 +5,6 @@ export default function FeaturedContent() {
     <section className="py-20 px-4 md:px-24 bg-white">
       <div className="container mx-auto flex flex-col lg:flex-row items-center gap-16">
         
-        {/* Sol Taraf: İkili Görsel Yapısı (Aynı Hizada) */}
         <div className="w-full lg:w-1/2 flex gap-4 h-[450px] md:h-[600px]">
           <div className="w-1/2 h-full rounded-2xl overflow-hidden shadow-lg">
             <img 
@@ -23,7 +22,6 @@ export default function FeaturedContent() {
           </div>
         </div>
 
-        {/* Sağ Taraf: İçerik */}
         <div className="w-full lg:w-1/2 flex flex-col items-start gap-6">
           <h4 className="text-[#23A6F0] font-bold text-base uppercase tracking-widest">
             Featured Products

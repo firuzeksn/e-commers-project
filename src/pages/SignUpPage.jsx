@@ -64,7 +64,6 @@ const SignUpPage = () => {
         
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
           
-          {/* Name */}
           <div className="flex flex-col gap-1">
             <label className="font-bold text-[#252B42]">Name *</label>
             <input 
@@ -75,7 +74,6 @@ const SignUpPage = () => {
             {errors.name && <span className="text-red-500 text-xs">{errors.name.message}</span>}
           </div>
 
-          {/* Email */}
           <div className="flex flex-col gap-1">
             <label className="font-bold text-[#252B42]">Email *</label>
             <input 
@@ -90,7 +88,6 @@ const SignUpPage = () => {
             {errors.email && <span className="text-red-500 text-xs">{errors.email.message}</span>}
           </div>
 
-          {/* Password */}
           <div className="flex flex-col gap-1">
             <label className="font-bold text-[#252B42]">Password *</label>
             <input 
@@ -108,7 +105,6 @@ const SignUpPage = () => {
             {errors.password && <span className="text-red-500 text-xs">{errors.password.message}</span>}
           </div>
 
-          {/* Confirm Password */}
           <div className="flex flex-col gap-1">
             <label className="font-bold text-[#252B42]">Confirm Password *</label>
             <input 
@@ -122,7 +118,6 @@ const SignUpPage = () => {
             {errors.confirmPassword && <span className="text-red-500 text-xs">{errors.confirmPassword.message}</span>}
           </div>
 
-          {/* Role */}
           <div className="flex flex-col gap-1">
             <label className="font-bold text-[#252B42]">Role</label>
             <select {...register("role_id")} className="border p-3 rounded bg-gray-50">
@@ -132,7 +127,6 @@ const SignUpPage = () => {
             </select>
           </div>
 
-          {/* Mağaza Detayları (Sadece Mağaza seçilirse) */}
           {selectedRoleId === "2" && (
             <div className="flex flex-col gap-4 p-4 bg-blue-50 rounded-lg border border-blue-100 animate-in fade-in duration-300">
               <div>
@@ -154,7 +148,6 @@ const SignUpPage = () => {
             </div>
           )}
 
-          {/* Submit Button */}
           <button 
             type="submit" 
             disabled={!isValid || isLoading}

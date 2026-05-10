@@ -5,7 +5,6 @@ const ContactPage = () => {
   return (
     <div className="w-full bg-white font-montserrat">
       
-      {/* 1. BÖLÜM: HERO (ÜST KISIM) */}
       <div className="px-4 md:px-44 py-16 flex flex-col md:flex-row items-center gap-10">
         <div className="flex-1 flex flex-col gap-8">
           <h5 className="text-[#252B42] font-bold uppercase tracking-wide">Contact Us</h5>
@@ -28,7 +27,6 @@ const ContactPage = () => {
         </div>
         
         <div className="flex-1 relative">
-          {/* Pembe dekoratif daireler ve ana görsel */}
           <div className="absolute -top-10 -right-10 w-72 h-72 bg-[#FFE9EA] rounded-full -z-10 animate-pulse"></div>
           <img 
             src="src/assets/aile.jpg" 
@@ -38,7 +36,6 @@ const ContactPage = () => {
         </div>
       </div>
 
-      {/* 2. BÖLÜM: VISIT OUR OFFICE (KARTLAR) */}
       <div className="bg-[#FAFAFA] py-28 px-4 md:px-44 text-center">
         <h5 className="text-[#252B42] font-bold text-sm uppercase mb-4">Visit Our Office</h5>
         <h2 className="text-[#252B42] text-4xl font-bold mb-20 max-w-xl mx-auto">
@@ -46,7 +43,6 @@ const ContactPage = () => {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 items-center">
-          {/* Sol Kart */}
           <div className="bg-white p-12 flex flex-col items-center gap-4">
             <Icon icon="ic:baseline-phone" className="text-[#23A6F0] text-7xl" />
             <div className="text-[#252B42] font-bold text-sm">
@@ -59,7 +55,6 @@ const ContactPage = () => {
             </button>
           </div>
 
-          {/* Orta Kart (Koyu Renk) */}
           <div className="bg-[#252B42] p-20 flex flex-col items-center gap-4 text-white scale-110 shadow-2xl z-20">
             <Icon icon="ic:baseline-location-on" className="text-[#23A6F0] text-7xl" />
             <div className="font-bold text-sm">
@@ -72,7 +67,6 @@ const ContactPage = () => {
             </button>
           </div>
 
-          {/* Sağ Kart */}
           <div className="bg-white p-12 flex flex-col items-center gap-4">
             <Icon icon="ic:baseline-email" className="text-[#23A6F0] text-7xl" />
             <div className="text-[#252B42] font-bold text-sm">
@@ -87,7 +81,6 @@ const ContactPage = () => {
         </div>
       </div>
 
-      {/* 3. BÖLÜM: LET'S TALK */}
       <div className="py-20 px-4 text-center flex flex-col items-center gap-6">
         <Icon icon="bi:arrow-90deg-down" className="text-[#23A6F0] text-5xl rotate-[180deg]" />
         <h5 className="text-[#252B42] font-bold uppercase">WE Can't WAIT TO MEET YOU</h5>

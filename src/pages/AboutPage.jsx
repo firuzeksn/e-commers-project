@@ -5,7 +5,6 @@ const AboutPage = () => {
   return (
     <div className="w-full bg-white font-montserrat">
       
-      {/* 1. HERO SECTION */}
       <div className="px-4 md:px-44 py-16 flex flex-col md:flex-row items-center gap-10">
         <div className="flex-1 flex flex-col gap-8">
           <h5 className="text-[#252B42] font-bold uppercase tracking-wide hidden md:block">About Company</h5>
@@ -27,7 +26,6 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* 2. DESCRIPTION SECTION */}
       <div className="px-4 md:px-44 py-20 flex flex-col md:flex-row justify-between items-start gap-10">
         <div className="flex-1 flex flex-col gap-6">
           <h6 className="text-[#E74040] text-sm">Problems trying</h6>
@@ -42,7 +40,6 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* 3. STATS SECTION */}
       <div className="px-4 md:px-44 py-20 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
         <div>
           <h2 className="text-[#252B42] text-6xl font-bold">15K</h2>
@@ -62,7 +59,6 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* 4. VIDEO SECTION */}
       <div className="px-4 md:px-44 py-20 flex justify-center">
         <div className="relative w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl">
           <img 
@@ -78,7 +74,6 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* 5. TEAM SECTION (Basit Versiyon) */}
       <div className="py-28 px-4 md:px-44 text-center">
         <h2 className="text-[#252B42] text-4xl font-bold mb-4">Meet Our Team</h2>
         <p className="text-[#737373] mb-20 max-w-sm mx-auto text-sm">
@@ -102,7 +97,6 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* 6. LOGOS SECTION */}
       <div className="bg-[#FAFAFA] py-20 px-4 md:px-44 text-center">
         <h2 className="text-[#252B42] text-4xl font-bold mb-4">Big Companies Are Here</h2>
         <p className="text-[#737373] mb-16 max-w-sm mx-auto text-sm">
@@ -118,7 +112,6 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* 7. CTA BLUE SECTION */}
       <div className="flex flex-col md:flex-row h-[600px]">
         <div className="flex-1 bg-[#23856D] flex flex-col justify-center px-4 md:px-44 gap-8 text-white">
           <h5 className="font-bold uppercase tracking-widest">Work with us</h5>

@@ -16,7 +16,6 @@ const TeamPage = () => {
 
   return (
     <div className="w-full bg-white font-montserrat">
-      {/* 1. BAŞLIK VE BREADCRUMB */}
       <div className="text-center py-20 flex flex-col gap-6">
         <h5 className="text-[#737373] font-bold uppercase tracking-widest text-lg">What we do</h5>
         <h1 className="text-[#252B42] text-6xl md:text-7xl font-bold">Innovation tailored for you</h1>
@@ -27,7 +26,6 @@ const TeamPage = () => {
         </div>
       </div>
 
-      {/* 2. GÖRSEL GALERİSİ (GRID) - Yükseklik 700px'e çıkarıldı */}
       <div className="flex flex-col md:flex-row gap-3 px-4 md:h-[700px]">
         <div className="flex-1">
           <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop" 
@@ -42,7 +40,6 @@ const TeamPage = () => {
         </div>
       </div>
 
-      {/* 3. EKİP ÜYELERİ - Kenar boşlukları daraltıldı, resim boyları 400px yapıldı */}
       <div className="py-32 px-4 md:px-24 text-center">
         <h2 className="text-[#252B42] text-5xl font-bold mb-24">Meet Our Team</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-24 gap-x-12">
@@ -69,7 +66,6 @@ const TeamPage = () => {
         </div>
       </div>
 
-      {/* 4. CTA BÖLÜMÜ */}
       <div className="py-24 text-center flex flex-col items-center gap-10 px-4 bg-gray-50/50">
         <h2 className="text-[#252B42] text-5xl md:text-6xl font-bold max-w-2xl leading-tight">
           Start your 14 days free trial

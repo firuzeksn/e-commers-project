@@ -20,8 +20,8 @@ const AddressForm = ({ onClose, onAddressUpdated, editData }) => {
     request
       .then(() => {
         toast.success(editData ? "Adres güncellendi!" : "Adres kaydedildi!");
-        onClose();                  // Önce modalı kapat
-        onAddressUpdated?.();       // Sonra listeyi güncelle — async bekleme yok
+        onClose();               
+        onAddressUpdated?.();    
       })
       .catch(err => {
         console.error("Hata:", err);

@@ -45,7 +45,6 @@ const PreviousOrdersPage = () => {
         {orders.map((order) => (
           <div key={order.id} className="bg-white rounded-xl shadow-sm border border-[#ECECEC] overflow-hidden">
             
-            {/* Sipariş Başlığı — tıklanınca açılır/kapanır */}
             <div
               onClick={() => toggleOrder(order.id)}
               className="flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-all"
@@ -84,7 +83,6 @@ const PreviousOrdersPage = () => {
               </div>
             </div>
 
-            {/* Collapsable — Sipariş Detayı */}
             {openOrderId === order.id && (
               <div className="border-t border-[#ECECEC] px-5 pb-5 pt-4 animate-fadeIn">
                 <h4 className="text-sm font-bold text-[#252B42] mb-4">Sipariş Detayı</h4>
@@ -109,7 +107,6 @@ const PreviousOrdersPage = () => {
                   ))}
                 </div>
 
-                {/* Alt bilgiler */}
                 <div className="mt-4 pt-4 border-t flex flex-col md:flex-row justify-between gap-2 text-xs text-gray-500">
                   <span>Kart Sahibi: <span className="font-bold text-[#252B42]">{order.card_name}</span></span>
                   <span>Son Kullanma: <span className="font-bold text-[#252B42]">{order.card_expire_month}/{order.card_expire_year}</span></span>

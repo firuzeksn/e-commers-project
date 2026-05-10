@@ -19,7 +19,7 @@ const CheckoutPage = () => {
   const [editingAddress, setEditingAddress] = useState(null);
   const [addressList, setAddressList] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(null);
-  const [cardInfo, setCardInfo] = useState(null); // ← eklendi
+  const [cardInfo, setCardInfo] = useState(null); 
 
   const totalPrice = cart.reduce((total, item) => total + (item.product.price * item.count), 0).toFixed(2);
 
@@ -46,7 +46,6 @@ const CheckoutPage = () => {
     }
   };
 
-  // T22: POST /order ile siparişi tamamla
   const handleFinishOrder = () => {
     const orderPayload = {
       address_id: selectedAddress.id,
@@ -98,7 +97,6 @@ const CheckoutPage = () => {
         />
       )}
 
-      {/* STEPPER */}
       <div className="flex items-center justify-center mb-10">
         <div className="flex items-center w-full max-w-md justify-between relative">
           <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold z-10 ${step >= 1 ? 'bg-[#23A6F0] text-white' : 'bg-white border text-gray-500'}`}>1</div>
@@ -169,7 +167,6 @@ const CheckoutPage = () => {
           {step === 2 && (
             <PaymentForm 
               onNext={(cardData) => {
-                // Yeni kart kaydedilecekse önce kaydet
                 if (cardData.shouldSave) {
                   axiosWithAuth().post('/user/card', cardData.cardPayload)
                     .then(() => toast.success("Kart kaydedildi."))
@@ -195,7 +192,6 @@ const CheckoutPage = () => {
           )}
         </div>
 
-        {/* Sipariş Özeti */}
         <div className="w-full lg:w-[400px]">
           <div className="bg-white p-6 md:p-8 rounded-lg shadow-md border border-[#ECECEC] sticky top-24">
             <h3 className="text-2xl font-bold text-[#252B42] mb-6 border-b pb-4">Sipariş Özeti</h3>

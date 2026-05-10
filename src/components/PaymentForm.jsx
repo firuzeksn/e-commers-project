@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 const PaymentForm = ({ onNext, onBack }) => {
   const [savedCards, setSavedCards] = useState([]);
   const [showNewCardForm, setShowNewCardForm] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(null); // id değil tüm kart objesi
+  const [selectedCard, setSelectedCard] = useState(null); 
   const [editingCard, setEditingCard] = useState(null);
   const [loading, setLoading] = useState(false);
   const [shouldSave, setShouldSave] = useState(false);
@@ -108,7 +108,6 @@ const PaymentForm = ({ onNext, onBack }) => {
         return;
       }
 
-      // Yeni kart bilgilerini üst bileşene ilet
       onNext({
         card_no: cardPayload.card_no,
         card_name: cardPayload.name_on_card,
@@ -120,7 +119,6 @@ const PaymentForm = ({ onNext, onBack }) => {
       });
 
     } else {
-      // Kayıtlı kart seçili
       if (!cvv || cvv.length < 3) {
         toast.error("Lütfen CVV giriniz.");
         return;
@@ -164,7 +162,6 @@ const PaymentForm = ({ onNext, onBack }) => {
             <p className="text-xs text-gray-500 uppercase mt-2 font-bold">{card.name_on_card}</p>
             <p className="text-xs text-gray-400 mt-1">{card.expire_month}/{card.expire_year}</p>
 
-            {/* Seçili kart için CVV girişi */}
             {selectedCard?.id === card.id && !showNewCardForm && (
               <div className="mt-3" onClick={e => e.stopPropagation()}>
                 <input

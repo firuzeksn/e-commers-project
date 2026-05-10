@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductDetail } from '../store/actions/productActions';
-import { addToCart, toggleFavorite } from "../store/actions/shoppingCartActions"; // toggleFavorite eklendi
+import { addToCart, toggleFavorite } from "../store/actions/shoppingCartActions"; 
 import { toast } from 'react-toastify';
 
 const ProductDetailPage = () => {
@@ -15,10 +15,8 @@ const ProductDetailPage = () => {
   
   const { productDetail, fetchState } = useSelector((state) => state.product);
   
-  // Favori listesini çekiyoruz
   const favorites = useSelector((state) => state.shoppingCart?.favorites || []);
   
-  // Bu ürün favorilerde mi?
   const isFavorite = favorites.some(item => item.id === Number(productId));
 
   useEffect(() => {
@@ -37,7 +35,6 @@ const ProductDetailPage = () => {
     }
   };
 
-  // Favoriye ekle/çıkar fonksiyonu
   const handleToggleFavorite = () => {
     if (productDetail) {
       dispatch(toggleFavorite(productDetail));
@@ -69,7 +66,6 @@ const ProductDetailPage = () => {
   return (
     <div className="w-full bg-[#FFFFFF] font-montserrat min-h-screen">
       
-      {/* 1. BÖLÜM: BREADCRUMB */}
       <div className="bg-[#FAFAFA]">
         <div className="px-4 md:px-44 py-6 flex items-center justify-between">
           <div className="flex items-center gap-3 font-bold text-sm">
@@ -90,7 +86,6 @@ const ProductDetailPage = () => {
         </div>
       </div>
 
-      {/* 2. BÖLÜM: ÜRÜN ANA PANELİ */}
       <div className="bg-[#FAFAFA]">
         <div className="px-4 md:px-44 pb-12 flex flex-col md:flex-row gap-8">
           <div className="w-full md:w-1/2 flex flex-col gap-4">
@@ -172,7 +167,6 @@ const ProductDetailPage = () => {
                   {(productDetail?.stock && productDetail.stock > 0) ? "Add to Cart" : "Out of Stock"}
                 </button>
                 <div className="flex gap-2">
-                  {/* FAVORİ (KALP) BUTONU GÜNCELLENDİ */}
                   <button 
                     onClick={handleToggleFavorite}
                     className="p-3 bg-white border border-[#E8E8E8] rounded-full hover:bg-gray-50 transition-colors"
@@ -191,7 +185,6 @@ const ProductDetailPage = () => {
         </div>
       </div>
 
-      {/* 3. BÖLÜM: DESCRIPTION TABS */}
       <div className="w-full bg-white border-t border-[#ECECEC]">
         <div className="flex justify-center gap-8 py-8 text-sm font-bold text-[#737373]">
           <button className="pb-2 border-b-2 border-[#23A6F0] text-[#252B42]">Description</button>
@@ -220,7 +213,6 @@ const ProductDetailPage = () => {
         </div>
       </div>
 
-      {/* 4. BÖLÜM: BESTSELLER PRODUCTS */}
       <div className="bg-[#FAFAFA] py-16 px-4 md:px-44">
         <h3 className="text-[#252B42] text-2xl font-bold mb-8 uppercase tracking-wider">Bestseller Products</h3>
         <hr className="mb-10 border-[#ECECEC]" />
@@ -241,7 +233,6 @@ const ProductDetailPage = () => {
         </div>
       </div>
 
-      {/* 5. BÖLÜM: CLIENT LOGOS */}
       <div className="bg-[#FAFAFA] py-12 border-t border-[#ECECEC]">
         <div className="px-4 md:px-44 flex flex-wrap justify-center md:justify-between items-center gap-10 opacity-50 grayscale hover:grayscale-0 transition-all">
           <Icon icon="fa6-brands:hooli" className="text-7xl" />

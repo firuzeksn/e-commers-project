@@ -2,7 +2,6 @@ import React from 'react';
 import { Icon } from '@iconify/react';
 
 const Clients = () => {
-  // Görseldeki logoları temsil eden ikonlar veya görseller
   const logos = [
     "fa6-brands:hooli",
     "fa6-brands:lyft",

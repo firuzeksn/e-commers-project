@@ -9,19 +9,16 @@ const EditorsPick = () => {
       </div>
       
       <div className="flex flex-col md:flex-row gap-8 w-full max-w-7xl h-auto md:h-[500px]">
-        {/* Men Bölümü */}
         <div className="relative flex-1 group overflow-hidden">
           <img src="src/assets/men.jpg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Men" />
           <div className="absolute bottom-6 left-6 bg-white px-12 py-3 font-bold uppercase text-[#252B42] shadow-md">Men</div>
         </div>
 
-        {/* Women Bölümü */}
         <div className="relative flex-1 group overflow-hidden">
           <img src="src/assets/women.jpg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Women" />
           <div className="absolute bottom-6 left-6 bg-white px-10 py-3 font-bold uppercase text-[#252B42] shadow-md">Women</div>
         </div>
 
-        {/* Küçük Kartlar Sütunu (Accessories & Kids) */}
         <div className="flex-1 flex flex-col gap-8">
           <div className="relative h-1/2 group overflow-hidden">
             <img src="src/assets/accessories.jpg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Accessories" />

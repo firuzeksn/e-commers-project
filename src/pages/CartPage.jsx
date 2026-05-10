@@ -2,14 +2,13 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Icon } from '@iconify/react';
 import { removeFromCart, updateCartItemCount } from '../store/actions/shoppingCartActions';
-import { Link, useNavigate } from 'react-router-dom'; // useNavigate eklendi
+import { Link, useNavigate } from 'react-router-dom'; 
 
 const CartPage = () => {
   const cart = useSelector((state) => state.shoppingCart.cart);
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Yönlendirme için tanımladık
+  const navigate = useNavigate(); 
 
-  // Toplam Fiyat Hesaplama
   const totalPrice = cart.reduce((total, item) => total + (item.product.price * item.count), 0).toFixed(2);
 
   if (cart.length === 0) {
@@ -30,7 +29,6 @@ const CartPage = () => {
       <h1 className="text-3xl font-bold text-[#252B42] mb-8">Alışveriş Sepetim</h1>
       
       <div className="flex flex-col lg:flex-row gap-8">
-        {/* Ürün Listesi */}
         <div className="flex-grow flex flex-col gap-4">
           {cart.map((item) => (
             <div key={item.product.id} className="bg-white p-4 rounded-lg shadow-sm border border-[#ECECEC] flex flex-col sm:flex-row items-center gap-4 transition-all hover:shadow-md">
@@ -48,7 +46,6 @@ const CartPage = () => {
                 </button>
               </div>
 
-              {/* Adet Kontrolü */}
               <div className="flex items-center border rounded-md bg-[#FAFAFA] shadow-inner">
                 <button 
                   onClick={() => dispatch(updateCartItemCount(item.product.id, item.count - 1))}
@@ -62,7 +59,6 @@ const CartPage = () => {
                 >+</button>
               </div>
 
-              {/* Toplam Satır Fiyatı */}
               <div className="text-right min-w-[100px]">
                 <p className="font-bold text-[#23856D] text-lg">${(item.product.price * item.count).toFixed(2)}</p>
               </div>
@@ -70,7 +66,6 @@ const CartPage = () => {
           ))}
         </div>
 
-        {/* Sipariş Özeti (Summary Sidebar) */}
         <div className="w-full lg:w-96 flex flex-col gap-4">
           <div className="bg-white p-6 rounded-lg shadow-md border border-[#ECECEC] sticky top-24">
             <h3 className="text-xl font-bold text-[#252B42] mb-6 border-b pb-2">Sipariş Özeti</h3>
@@ -99,7 +94,7 @@ const CartPage = () => {
             </div>
 
             <button 
-              onClick={() => navigate("/checkout")} // Checkout sayfasına yönlendirme
+              onClick={() => navigate("/checkout")}
               className="w-full bg-[#23A6F0] text-white py-4 rounded-md font-bold shadow-lg hover:bg-[#1a8cd1] hover:shadow-xl transition-all active:scale-95 flex items-center justify-center gap-2"
             >
               <Icon icon="ic:outline-shopping-cart-checkout" className="text-xl" />

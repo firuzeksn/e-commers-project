@@ -7,7 +7,6 @@ const api = axios.create({
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
-    // "Bearer " prefix OLMADAN gönder — API böyle istiyor
     config.headers.Authorization = token;
   }
   return config;

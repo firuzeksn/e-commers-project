@@ -19,7 +19,7 @@ const AboutPage = () => {
         <div className="flex-1 relative flex justify-center">
           <div className="absolute top-0 w-72 h-72 bg-[#FFE9EA] rounded-full -z-10"></div>
           <img 
-            src="/aboutPhoto.7b7672a306852cdecc3f.png" 
+            src="src\assets\aboutPhoto.7b7672a306852cdecc3f.png" 
             alt="About Us" 
             className="w-full max-w-md h-auto object-contain relative z-10"
           />
@@ -62,7 +62,7 @@ const AboutPage = () => {
       <div className="px-4 md:px-44 py-20 flex justify-center">
         <div className="relative w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl">
           <img 
-            src="/video-cover.jpg" 
+            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop" 
             alt="Video Cover" 
             className="w-full h-[540px] object-cover"
           />
@@ -125,7 +125,7 @@ const AboutPage = () => {
         </div>
         <div className="flex-1 hidden md:block">
           <img 
-            src="/working.jpg" 
+            src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop" 
             className="w-full h-full object-cover"
             alt="Working"
           />

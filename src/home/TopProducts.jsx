@@ -6,7 +6,7 @@ export default function TopProducts() {
       <div className="container mx-auto flex flex-col md:flex-row gap-4 h-auto md:h-[600px]">
         <div className="relative w-full md:w-1/2 h-[500px] md:h-full overflow-hidden group">
           <img 
-            src="/fashionable-man-woman-sitting-stair.jpg" 
+            src="src/assets/fashionable-man-woman-sitting-stair.jpg" 
             alt="Main Product" 
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
           />
@@ -21,7 +21,7 @@ export default function TopProducts() {
         <div className="w-full md:w-1/2 flex flex-col gap-4 h-full">
           <div className="relative h-[300px] md:h-1/2 overflow-hidden group">
             <img 
-              src="/pexels-warley-venancio-4255179-1365x2048.jpg.webp" 
+              src="src/assets/pexels-warley-venancio-4255179-1365x2048.jpg.webp" 
               alt="Product 2" 
               className="w-full h-full object-cover object-[50%_15%] transition-transform duration-500 group-hover:scale-105" 
             />
@@ -35,7 +35,7 @@ export default function TopProducts() {
           
           <div className="relative h-[300px] md:h-1/2 overflow-hidden group">
             <img 
-              src="/blog-2_1296x.webp" 
+              src="src/assets/blog-2_1296x.webp" 
               alt="Product 3" 
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
             />

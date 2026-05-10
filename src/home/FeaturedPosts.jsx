@@ -18,7 +18,7 @@ export default function FeaturedPosts() {
               
               <div className="relative w-full md:w-[40%] h-[300px] md:h-auto">
                 <img 
-                  src={item === 1 ? "/havai.jpg" : "/images.jpg"} 
+                  src={item === 1 ? "src/assets/havai.jpg" : "src/assets/images.jpg"} 
                   alt="Post" 
                   className="w-full h-full object-cover"
                 />

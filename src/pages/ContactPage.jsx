@@ -29,7 +29,7 @@ const ContactPage = () => {
         <div className="flex-1 relative">
           <div className="absolute -top-10 -right-10 w-72 h-72 bg-[#FFE9EA] rounded-full -z-10 animate-pulse"></div>
           <img 
-            src="/aile.jpg" 
+            src="src/assets/aile.jpg" 
             alt="Family Shopping" 
             className="w-full h-auto object-contain relative z-10"
           />
